@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\jishe.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\jishe.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\jisheEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\jishe">
+      <UniqueIdentifier>{8C5097AE-292E-3434-948B-3B111E928D51}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\jishe\jishe.Build.cs">
+      <Filter>Source\jishe</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\jishe\jishe.cpp">
+      <Filter>Source\jishe</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\jishe\jishe.h">
+      <Filter>Source\jishe</Filter>
+    </ClInclude>
+    <Filter Include="Source\jishe\Private">
+      <UniqueIdentifier>{ED7FA6FF-3F2D-31FA-A454-1D949253450D}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\jishe\Private\InkLine.cpp">
+      <Filter>Source\jishe\Private</Filter>
+    </ClCompile>
+    <Filter Include="Source\jishe\Public">
+      <UniqueIdentifier>{B6394463-3F60-369A-B025-1E80A2F1E292}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\jishe\Public\InkLine.h">
+      <Filter>Source\jishe\Public</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

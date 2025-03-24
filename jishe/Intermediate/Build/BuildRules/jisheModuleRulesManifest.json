@@ -1,0 +1,16 @@
+{
+	"SourceFiles": [
+		"F:\\Unreal\\jishe\\jishe\\Source\\jishe\\jishe.Build.cs",
+		"F:\\Unreal\\jishe\\jishe\\Plugins\\Developer\\RiderLink\\Source\\RD\\RD.Build.cs",
+		"F:\\Unreal\\jishe\\jishe\\Plugins\\Developer\\RiderLink\\Source\\RiderBlueprint\\RiderBlueprint.Build.cs",
+		"F:\\Unreal\\jishe\\jishe\\Plugins\\Developer\\RiderLink\\Source\\RiderDebuggerSupport\\RiderDebuggerSupport.Build.cs",
+		"F:\\Unreal\\jishe\\jishe\\Plugins\\Developer\\RiderLink\\Source\\RiderGameControl\\RiderGameControl.Build.cs",
+		"F:\\Unreal\\jishe\\jishe\\Plugins\\Developer\\RiderLink\\Source\\RiderLC\\RiderLC.Build.cs",
+		"F:\\Unreal\\jishe\\jishe\\Plugins\\Developer\\RiderLink\\Source\\RiderLink\\RiderLink.Build.cs",
+		"F:\\Unreal\\jishe\\jishe\\Plugins\\Developer\\RiderLink\\Source\\RiderLogging\\RiderLogging.Build.cs",
+		"F:\\Unreal\\jishe\\jishe\\Plugins\\Developer\\RiderLink\\Source\\RiderShaderInfo\\RiderShaderInfo.Build.cs",
+		"F:\\Unreal\\jishe\\jishe\\Source\\jishe.Target.cs",
+		"F:\\Unreal\\jishe\\jishe\\Source\\jisheEditor.Target.cs"
+	],
+	"EngineVersion": "5.4.2"
+}

@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "jishe",
+			"Path": "..\\Source\\jishe.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "jisheEditor",
+			"Path": "..\\Source\\jisheEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
