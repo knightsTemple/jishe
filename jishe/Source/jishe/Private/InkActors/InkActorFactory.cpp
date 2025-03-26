@@ -11,6 +11,13 @@ AInkActorFactory::AInkActorFactory()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	InkLineClass = ConstructorHelpers::FClassFinder<AActor>(TEXT("/Game/InkActors/BP_InkLine")).Class;
+	InkCircleClass = ConstructorHelpers::FClassFinder<AActor>(TEXT("/Game/InkActors/BP_InkLine")).Class;
+	check(InkLineClass);
+	check(InkCircleClass);
+	NowOperatingInkActor = nullptr;
+	
 }
 
 // Called when the game starts or when spawned
@@ -36,20 +43,40 @@ void AInkActorFactory::DeleteAllInkActors()
 	NowOperatingInkActor->Destroy();
 }
 
-void AInkActorFactory::OnMouseChanging(FVector NewLocation) const
-{
-	NowOperatingInkActor.Get()->OnMouseChanging(NewLocation);
-}
-
-void AInkActorFactory::OnMouseLeftClick(EInkActorType InkActorType , FVector Location) 
+void AInkActorFactory::OnMouseChanging(const FVector& NewLocation) 
 {
 	if (NowOperatingInkActor)
 	{
-		NowOperatingInkActor.Get()->OnMouseLeftClick(Location);
+		NowOperatingInkActor->OnMouseChanging(NewLocation);
+	}
+}
+
+void AInkActorFactory::OnMouseLeftClick(EInkActorType InkActorType , const FVector& Location) 
+{
+	if (NowOperatingInkActor)
+	{
+		NowOperatingInkActor ->OnMouseLeftClick(Location);
+		AllInkActors.Add(NowOperatingInkActor);
 		NowOperatingInkActor = nullptr;
+		GEngine->AddOnScreenDebugMessage(-1,2.f,FColor::Red,"Establish An Actor");
 	}
 	else
 	{
+		GEngine->AddOnScreenDebugMessage(-1,2.f,FColor::Red,"Create An Actor");
+		TSubclassOf<AInkActor> InkActorClass ;
+		switch (InkActorType)
+		{
+		case EInkActorType::Line : InkActorClass = InkLineClass; break;
+		case EInkActorType::Circle : InkActorClass = InkCircleClass; break;
+		}
+
+		NowOperatingInkActor = Cast<AInkActor>(GetWorld()->SpawnActor(InkActorClass,&Location));
+		
+		GEngine->AddOnScreenDebugMessage(-1,2,FColor::Red,FString::Printf(TEXT("%f,%f") , Location.X,Location.Y));
+		
+		NowOperatingInkActor ->SetStaticMeshVisibility(false);
+		NowOperatingInkActor ->SetStartPosition(Location);
+
 		
 	}
 }

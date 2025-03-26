@@ -33,18 +33,24 @@ protected:
 	TArray<AInkActor*> AllInkActors;//目前创建过的InkActor
 
 	UPROPERTY()
-	TObjectPtr<AInkActor> NowOperatingInkActor;//现在正在操作的InkActor
+	AInkActor* NowOperatingInkActor;//现在正在操作的InkActor
+
+	UPROPERTY()
+	TSubclassOf<AInkActor> InkLineClass;
+
+	UPROPERTY()
+	TSubclassOf<AInkActor> InkCircleClass;
 
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void DeleteAllInkActors();
 
-	UFUNCTION()
-	void OnMouseChanging(FVector NewLocation) const;
+	UFUNCTION(BlueprintCallable)
+	void OnMouseChanging(const FVector& NewLocation) ;
 
-	UFUNCTION()
-	void OnMouseLeftClick(EInkActorType InkActorType , FVector Location) ;
+	UFUNCTION(BlueprintCallable)
+	void OnMouseLeftClick(EInkActorType InkActorType , const FVector& Location);
 };

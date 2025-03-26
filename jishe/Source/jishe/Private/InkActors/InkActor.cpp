@@ -22,7 +22,9 @@ void AInkActor::SetStaticMeshVisibility_Implementation(bool Visibility)
 {}
 
 void AInkActor::EstablishThisActor_Implementation()
-{}
+{
+	SetStaticMeshVisibility(true);
+}
 
 // Called every frame
 void AInkActor::Tick(float DeltaTime)
@@ -35,4 +37,9 @@ void AInkActor::OnMouseChanging(const FVector& NewLocation)
 
 void AInkActor::OnMouseLeftClick(const FVector& Location)
 {}
+
+void AInkActor::SetStartPosition(const FVector& NewStartPosition)
+{
+	StartPosition = NewStartPosition;
+}
 

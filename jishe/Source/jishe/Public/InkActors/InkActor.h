@@ -24,15 +24,16 @@ protected:
 
 	UPROPERTY()
 	FVector StartPosition;//第一次被点击时的位置坐标
-
-
+	
+	UFUNCTION(BlueprintNativeEvent)
+	void EstablishThisActor();
+public:
 	UFUNCTION(BlueprintNativeEvent)
 	void SetStaticMeshVisibility(bool Visibility);
 
-	UFUNCTION(BlueprintNativeEvent)
-	void EstablishThisActor();
+	
 
-public:
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -41,4 +42,7 @@ public:
 
 	UFUNCTION()
 	virtual  void OnMouseLeftClick(const FVector& Location);
+
+	UFUNCTION()
+	void SetStartPosition(const FVector& NewStartPosition);
 };

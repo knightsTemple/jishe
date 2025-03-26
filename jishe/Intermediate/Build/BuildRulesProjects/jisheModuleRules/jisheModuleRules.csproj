@@ -14,6 +14,14 @@
     <ProjectReference Include="G:\UE_5.3\UE_5.4\Engine\Source\Programs\UnrealBuildTool\UnrealBuildTool.csproj"><Private>false</Private></ProjectReference>
   </ItemGroup>
   <ItemGroup>
+  <Compile Include="..\..\..\..\Plugins\Developer\RiderLink\Source\RD\RD.Build.cs"><Link>Plugins\Developer\RiderLink\Source\RD\RD.Build.cs</Link></Compile>
+  <Compile Include="..\..\..\..\Plugins\Developer\RiderLink\Source\RiderBlueprint\RiderBlueprint.Build.cs"><Link>Plugins\Developer\RiderLink\Source\RiderBlueprint\RiderBlueprint.Build.cs</Link></Compile>
+  <Compile Include="..\..\..\..\Plugins\Developer\RiderLink\Source\RiderDebuggerSupport\RiderDebuggerSupport.Build.cs"><Link>Plugins\Developer\RiderLink\Source\RiderDebuggerSupport\RiderDebuggerSupport.Build.cs</Link></Compile>
+  <Compile Include="..\..\..\..\Plugins\Developer\RiderLink\Source\RiderGameControl\RiderGameControl.Build.cs"><Link>Plugins\Developer\RiderLink\Source\RiderGameControl\RiderGameControl.Build.cs</Link></Compile>
+  <Compile Include="..\..\..\..\Plugins\Developer\RiderLink\Source\RiderLC\RiderLC.Build.cs"><Link>Plugins\Developer\RiderLink\Source\RiderLC\RiderLC.Build.cs</Link></Compile>
+  <Compile Include="..\..\..\..\Plugins\Developer\RiderLink\Source\RiderLink\RiderLink.Build.cs"><Link>Plugins\Developer\RiderLink\Source\RiderLink\RiderLink.Build.cs</Link></Compile>
+  <Compile Include="..\..\..\..\Plugins\Developer\RiderLink\Source\RiderLogging\RiderLogging.Build.cs"><Link>Plugins\Developer\RiderLink\Source\RiderLogging\RiderLogging.Build.cs</Link></Compile>
+  <Compile Include="..\..\..\..\Plugins\Developer\RiderLink\Source\RiderShaderInfo\RiderShaderInfo.Build.cs"><Link>Plugins\Developer\RiderLink\Source\RiderShaderInfo\RiderShaderInfo.Build.cs</Link></Compile>
   <Compile Include="..\..\..\..\Source\jishe.Target.cs"><Link>Source\jishe.Target.cs</Link></Compile>
   <Compile Include="..\..\..\..\Source\jisheEditor.Target.cs"><Link>Source\jisheEditor.Target.cs</Link></Compile>
   <Compile Include="..\..\..\..\Source\jishe\jishe.Build.cs"><Link>Source\jishe\jishe.Build.cs</Link></Compile>
