@@ -36,17 +36,25 @@ protected:
 	AInkActor* NowOperatingInkActor;//现在正在操作的InkActor
 
 	UPROPERTY()
-	TSubclassOf<AInkActor> InkLineClass;
+	TSubclassOf<AInkActor> InkLineClass;//线条Actor的类
 
 	UPROPERTY()
-	TSubclassOf<AInkActor> InkCircleClass;
+	TSubclassOf<AInkActor> InkCircleClass;//圆环Actor的类
 
+	UPROPERTY(BlueprintReadWrite,EditAnywhere)
+	float LineWidth = 100.f;
+
+	UPROPERTY(BlueprintReadWrite,EditAnywhere)
+	float CircleRadiusDelta = 100.f;
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintCallable)
 	void DeleteAllInkActors();
+
+	UFUNCTION(BlueprintCallable)
+	void DeleteLastActor();
 
 	UFUNCTION(BlueprintCallable)
 	void OnMouseChanging(const FVector& NewLocation) ;

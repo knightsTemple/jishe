@@ -21,7 +21,6 @@ void AInkLine::BeginPlay()
 void AInkLine::OnMouseChanging(const FVector& NewLocation)
 {
 	SetStaticMeshVisibility(true);
-	
 	const FVector NewPosition = (StartPosition + NewLocation) / 2.0f;
 	FRotator NewRotation = FRotator::ZeroRotator;
 	const FVector Direction = NewLocation - StartPosition;
@@ -29,16 +28,11 @@ void AInkLine::OnMouseChanging(const FVector& NewLocation)
 	{
 		NewRotation = Direction.Rotation();
 	}
-
 	const float Distance = FVector::Distance(StartPosition, NewLocation);
-	SetActorScale3D(FVector(Distance, 1.0f, 1.0f)); // 线段沿X轴方向
+	SetActorScale3D(FVector(Distance / 100.f, NecessaryNum, 1.0f)); // 线段沿X轴方向
 	// Set the new location and rotation
 	SetActorLocation(NewPosition);
 	SetActorRotation(NewRotation);
 }
 
-void AInkLine::OnMouseLeftClick(const FVector& Location)
-{
-	EstablishThisActor();
-}
 

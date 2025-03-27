@@ -20,8 +20,5 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-
 	virtual void OnMouseChanging(const FVector& NewLocation) override;
-
-	virtual void OnMouseLeftClick(const FVector& Location) override;
 };

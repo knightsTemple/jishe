@@ -13,7 +13,7 @@ AInkActorFactory::AInkActorFactory()
 	PrimaryActorTick.bCanEverTick = true;
 
 	InkLineClass = ConstructorHelpers::FClassFinder<AActor>(TEXT("/Game/InkActors/BP_InkLine")).Class;
-	InkCircleClass = ConstructorHelpers::FClassFinder<AActor>(TEXT("/Game/InkActors/BP_InkLine")).Class;
+	InkCircleClass = ConstructorHelpers::FClassFinder<AActor>(TEXT("/Game/InkActors/BP_InkCircle")).Class;
 	check(InkLineClass);
 	check(InkCircleClass);
 	NowOperatingInkActor = nullptr;
@@ -40,7 +40,27 @@ void AInkActorFactory::DeleteAllInkActors()
 		Actor->Destroy();
 	}
 	AllInkActors.Empty();
-	NowOperatingInkActor->Destroy();
+	if (NowOperatingInkActor)
+	{
+		NowOperatingInkActor->Destroy();
+	}
+	
+}
+
+void AInkActorFactory::DeleteLastActor()
+{
+	if (AllInkActors.Num() == 0)
+	{
+		GEngine->AddOnScreenDebugMessage(-1,2,FColor::Red,"There is nothing to delete");
+		return;
+	}
+	if (NowOperatingInkActor)
+	{
+		NowOperatingInkActor->Destroy();
+		return;
+	}
+	AInkActor* CurActor =  AllInkActors.Pop();
+	CurActor->Destroy();
 }
 
 void AInkActorFactory::OnMouseChanging(const FVector& NewLocation) 
@@ -55,14 +75,14 @@ void AInkActorFactory::OnMouseLeftClick(EInkActorType InkActorType , const FVect
 {
 	if (NowOperatingInkActor)
 	{
-		NowOperatingInkActor ->OnMouseLeftClick(Location);
+		NowOperatingInkActor -> EstablishThisActor();
 		AllInkActors.Add(NowOperatingInkActor);
 		NowOperatingInkActor = nullptr;
-		GEngine->AddOnScreenDebugMessage(-1,2.f,FColor::Red,"Establish An Actor");
+		//GEngine->AddOnScreenDebugMessage(-1,2.f,FColor::Red,"Establish An Actor");
 	}
 	else
 	{
-		GEngine->AddOnScreenDebugMessage(-1,2.f,FColor::Red,"Create An Actor");
+		//GEngine->AddOnScreenDebugMessage(-1,2.f,FColor::Red,"Create An Actor");
 		TSubclassOf<AInkActor> InkActorClass ;
 		switch (InkActorType)
 		{
@@ -72,11 +92,11 @@ void AInkActorFactory::OnMouseLeftClick(EInkActorType InkActorType , const FVect
 
 		NowOperatingInkActor = Cast<AInkActor>(GetWorld()->SpawnActor(InkActorClass,&Location));
 		
-		GEngine->AddOnScreenDebugMessage(-1,2,FColor::Red,FString::Printf(TEXT("%f,%f") , Location.X,Location.Y));
+		//GEngine->AddOnScreenDebugMessage(-1,2,FColor::Red,FString::Printf(TEXT("%f,%f") , Location.X,Location.Y));
 		
 		NowOperatingInkActor ->SetStaticMeshVisibility(false);
 		NowOperatingInkActor ->SetStartPosition(Location);
-
+		NowOperatingInkActor->SetActorNecessaryNum(InkActorType == EInkActorType::Circle ? CircleRadiusDelta : LineWidth);
 		
 	}
 }

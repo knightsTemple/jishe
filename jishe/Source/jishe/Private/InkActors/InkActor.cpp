@@ -35,11 +35,15 @@ void AInkActor::Tick(float DeltaTime)
 void AInkActor::OnMouseChanging(const FVector& NewLocation)
 {}
 
-void AInkActor::OnMouseLeftClick(const FVector& Location)
-{}
 
 void AInkActor::SetStartPosition(const FVector& NewStartPosition)
 {
 	StartPosition = NewStartPosition;
 }
+
+void AInkActor::SetActorNecessaryNum(const float Num)
+{
+	NecessaryNum = Num;
+}
+
 

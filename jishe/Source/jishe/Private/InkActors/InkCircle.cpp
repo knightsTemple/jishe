@@ -10,37 +10,26 @@ AInkCircle::AInkCircle()
 
     static ConstructorHelpers::FObjectFinder<UMaterial> MatFinder(TEXT("/Game/Materials/M_Ring"));
     if(MatFinder.Succeeded()) RingMaterial = MatFinder.Object;
+
+    
 }
 
 void AInkCircle::BeginPlay()
 {
     Super::BeginPlay();
     ProcMesh->SetMaterial(0, RingMaterial);
+    
 }
 
-void AInkCircle::OnMouseLeftClick(const FVector& Location)
-{
-    if (!bIsPlaced) {
-        // 第一次点击设置圆心
-        StartPosition = Location;
-        bIsPlaced = true;
-        SetActorLocation(Location);
-    } else {
-        // 第二次点击完成创建
-        EstablishThisActor();
-    }
-}
 
 void AInkCircle::OnMouseChanging(const FVector& NewLocation)
 {
-    if (bIsPlaced) {
-        // 实时更新半径
-        OuterRadius = FVector::Distance(StartPosition, NewLocation);
-        OuterRadius = FMath::Max(OuterRadius, RadiusDelta);
-        InnerRadius = OuterRadius - RadiusDelta;
-        
-        GenerateRingMesh();
-    }
+        RadiusDelta = NecessaryNum; 
+       // 实时更新半径
+       OuterRadius = FVector::Distance(StartPosition, NewLocation);
+       OuterRadius = FMath::Max(OuterRadius, RadiusDelta);
+       InnerRadius = OuterRadius - RadiusDelta;  
+       GenerateRingMesh();
 }
 
 void AInkCircle::GenerateRingMesh()

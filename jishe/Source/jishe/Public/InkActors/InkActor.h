@@ -18,20 +18,19 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-	UPROPERTY()
-	bool bIsPlaced = false; //目前的InkActor被放置没有
-
+	
 	UPROPERTY()
 	FVector StartPosition;//第一次被点击时的位置坐标
+
+	UPROPERTY()
+	float NecessaryNum = 100.0f;
 	
-	UFUNCTION(BlueprintNativeEvent)
-	void EstablishThisActor();
 public:
 	UFUNCTION(BlueprintNativeEvent)
 	void SetStaticMeshVisibility(bool Visibility);
 
-	
+	UFUNCTION(BlueprintNativeEvent)
+	void EstablishThisActor();
 
 
 	// Called every frame
@@ -41,8 +40,8 @@ public:
 	virtual  void OnMouseChanging(const FVector& NewLocation);
 
 	UFUNCTION()
-	virtual  void OnMouseLeftClick(const FVector& Location);
+	void SetStartPosition(const FVector& NewStartPosition);
 
 	UFUNCTION()
-	void SetStartPosition(const FVector& NewStartPosition);
+	void SetActorNecessaryNum(const float Num);
 };

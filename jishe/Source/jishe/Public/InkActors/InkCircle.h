@@ -29,13 +29,12 @@ protected:
 
 	float OuterRadius = 0.0f;
 	float InnerRadius = 0.0f;
-	const float RadiusDelta = 100.0f; // 固定内外半径差
+	float RadiusDelta = 0; // 固定内外半径差
     
 	virtual void OnMouseChanging(const FVector& NewLocation) override;
-	virtual void OnMouseLeftClick(const FVector& Location) override;
+
 
 private:
 	void GenerateRingMesh();
-	//TArray<FVector> CalculateRingVertices() const;
 	
 };
