@@ -15,6 +15,15 @@ enum class EInkActorType : uint8
 	Circle
 };
 
+USTRUCT(BlueprintType)
+struct FInkDatabaseRow : public FTableRowBase
+{
+	GENERATED_BODY()
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	EInkActorType InkActorType;//这一条参照墨线的类型
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	FTransform InkActorTransform;//这一条参照墨线的三维坐标
+};
 
 UCLASS()
 class JISHE_API AInkActorFactory : public AActor
@@ -42,10 +51,22 @@ protected:
 	TSubclassOf<AInkActor> InkCircleClass;//圆环Actor的类
 
 	UPROPERTY(BlueprintReadWrite,EditAnywhere)
-	float LineWidth = 100.f;
+	float LineWidth = 100.f;//线条宽度
 
 	UPROPERTY(BlueprintReadWrite,EditAnywhere)
-	float CircleRadiusDelta = 100.f;
+	float CircleRadiusDelta = 100.f;//圆环线条宽度
+
+	UPROPERTY()
+	TArray<FInkDatabaseRow> ExamingActorsData;//检查的数据
+
+	UPROPERTY()
+	TArray<AInkActor*> InkActorsData;//实际上生成的Ink Actor
+
+	UPROPERTY()
+	UDataTable* InkDataTable;//存储InkActor数据的数据表
+
+	
+	
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -62,3 +83,4 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void OnMouseLeftClick(EInkActorType InkActorType , const FVector& Location);
 };
+
