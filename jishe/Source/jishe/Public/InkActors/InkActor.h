@@ -32,6 +32,9 @@ public:
 	UFUNCTION(BlueprintNativeEvent)
 	void EstablishThisActor();
 
+	UFUNCTION(BlueprintNativeEvent)
+	void SetActorMaterial(FVector Location);
+
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

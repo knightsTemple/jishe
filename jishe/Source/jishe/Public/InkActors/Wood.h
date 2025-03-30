@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/BoxComponent.h"
 #include "GameFramework/Actor.h"
 #include "Wood.generated.h"
 
@@ -22,4 +23,10 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
+	UStaticMeshComponent* StaticMesh;
+
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
+	UBoxComponent* Box;
 };

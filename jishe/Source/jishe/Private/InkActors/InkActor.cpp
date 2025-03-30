@@ -26,6 +26,9 @@ void AInkActor::EstablishThisActor_Implementation()
 	SetStaticMeshVisibility(true);
 }
 
+void AInkActor::SetActorMaterial_Implementation(FVector Location)
+{}
+
 // Called every frame
 void AInkActor::Tick(float DeltaTime)
 {

@@ -1567,7 +1567,10 @@
     <ClCompile Include="..\..\Source\jishe\Private\InkActors\InkCircle.cpp">
       <Filter>Source\jishe\Private\InkActors</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\jishe\Private\InkActors\InkLineActor.cpp">
+    <ClCompile Include="..\..\Source\jishe\Private\InkActors\InkLine.cpp">
+      <Filter>Source\jishe\Private\InkActors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\jishe\Private\InkActors\InkTask.cpp">
       <Filter>Source\jishe\Private\InkActors</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\jishe\Private\InkActors\Wood.cpp">
@@ -1591,7 +1594,16 @@
     <ClInclude Include="..\..\Source\jishe\Public\InkActors\InkCircle.h">
       <Filter>Source\jishe\Public\InkActors</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\jishe\Public\InkActors\InkLineActor.h">
+    <ClCompile Include="..\..\Source\jishe\Public\InkActors\InkInformation.cpp">
+      <Filter>Source\jishe\Public\InkActors</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\jishe\Public\InkActors\InkInformation.h">
+      <Filter>Source\jishe\Public\InkActors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\jishe\Public\InkActors\InkLine.h">
+      <Filter>Source\jishe\Public\InkActors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\jishe\Public\InkActors\InkTask.h">
       <Filter>Source\jishe\Public\InkActors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\jishe\Public\InkActors\Wood.h">

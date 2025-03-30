@@ -4,36 +4,25 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "InkInformation.h"
 #include "InkActorFactory.generated.h"
 
+class AWood;
 class AInkActor;
 
-UENUM(BlueprintType)
-enum class EInkActorType : uint8
-{
-	Line,
-	Circle
-};
 
-USTRUCT(BlueprintType)
-struct FInkDatabaseRow : public FTableRowBase
-{
-	GENERATED_BODY()
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	EInkActorType InkActorType;//这一条参照墨线的类型
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	FTransform InkActorTransform;//这一条参照墨线的三维坐标
-};
 
 UCLASS()
 class JISHE_API AInkActorFactory : public AActor
 {
 	GENERATED_BODY()
 
+	
 public:
 	// Sets default values for this actor's properties
 	AInkActorFactory();
 
+	friend class AInkTask;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -56,17 +45,32 @@ protected:
 	UPROPERTY(BlueprintReadWrite,EditAnywhere)
 	float CircleRadiusDelta = 100.f;//圆环线条宽度
 
-	UPROPERTY()
-	TArray<FInkDatabaseRow> ExamingActorsData;//检查的数据
+	UPROPERTY(BlueprintReadWrite,EditAnywhere)
+	FVector WoodSpawnLocation = {0,0,0};
 
 	UPROPERTY()
 	TArray<AInkActor*> InkActorsData;//实际上生成的Ink Actor
+	
+	UPROPERTY()
+	AWood* NowWood = nullptr;
 
 	UPROPERTY()
-	UDataTable* InkDataTable;//存储InkActor数据的数据表
+	AInkTask* NowInkTaskClass;
 
+	UPROPERTY()
+	int NowLineNum = 0;
+
+	UPROPERTY()
+	FInkDatabaseRow NowTask;
+
+	UFUNCTION()
+	void ReceiveThisTask(const FInkDatabaseRow& ThisTask);
 	
-	
+	UFUNCTION()
+	void GenerateExaminationInkActors();
+
+
+		
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

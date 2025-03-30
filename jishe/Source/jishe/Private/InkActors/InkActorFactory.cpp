@@ -3,7 +3,11 @@
 
 #include "InkActors/InkActorFactory.h"
 
+#include "Customizations/MathStructProxyCustomizations.h"
 #include "InkActors/InkActor.h"
+#include "InkActors/InkTask.h"
+#include "InkActors/Wood.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -17,7 +21,8 @@ AInkActorFactory::AInkActorFactory()
 	check(InkLineClass);
 	check(InkCircleClass);
 	NowOperatingInkActor = nullptr;
-	
+
+	NowInkTaskClass = Cast<AInkTask>(UGameplayStatics::GetActorOfClass(GetWorld() , AInkTask::StaticClass()));
 }
 
 // Called when the game starts or when spawned
@@ -25,6 +30,41 @@ void AInkActorFactory::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+
+void AInkActorFactory::ReceiveThisTask(const FInkDatabaseRow& ThisTask)
+{
+	NowTask = ThisTask;
+	FActorSpawnParameters SpawnParameters;
+	SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	FRotator SpawnRotation = FRotator(0, 0, 0);
+	NowWood->Destroy();
+	NowWood = Cast<AWood>(GetWorld()->SpawnActor(NowTask.WoodType.Get() , &WoodSpawnLocation , &SpawnRotation, SpawnParameters));
+	GenerateExaminationInkActors();
+}
+
+void AInkActorFactory::	GenerateExaminationInkActors()
+{
+	TArray<AInkActor*> ExaminationInkActors;
+	for (const auto [InkActorType, InkActorTransform] : NowTask.InkData.InkActorTransforms)
+	{
+		TSubclassOf<AInkActor> InkActorClass;
+		switch (InkActorType)
+		{
+		case EInkActorType::Line: InkActorClass = InkLineClass; break;
+		case EInkActorType::Circle: InkActorClass = InkCircleClass; break;
+		}
+		const FVector Location = InkActorTransform.GetLocation() + NowWood->GetActorLocation() + NowWood->Box->GetScaledBoxExtent();
+		const FRotator Rotator(InkActorTransform.GetRotation());
+		FActorSpawnParameters SpawnParameters;
+		SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+		AInkActor* InkActor = Cast<AInkActor>(GetWorld()->SpawnActor(InkActorClass, &Location , &Rotator , SpawnParameters));
+		InkActor->SetActorScale3D(InkActorTransform.GetScale3D());
+
+		ExaminationInkActors.Add(InkActor);
+	}
+	NowInkTaskClass->ReceiveExaminationInkActors(ExaminationInkActors);
 }
 
 // Called every frame
@@ -90,7 +130,10 @@ void AInkActorFactory::OnMouseLeftClick(EInkActorType InkActorType , const FVect
 		case EInkActorType::Circle : InkActorClass = InkCircleClass; break;
 		}
 
-		NowOperatingInkActor = Cast<AInkActor>(GetWorld()->SpawnActor(InkActorClass,&Location));
+		FActorSpawnParameters SpawnParams ;
+		SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+		const FRotator RotatorSpawnParams = {0,0,0};
+		NowOperatingInkActor = Cast<AInkActor>(GetWorld()->SpawnActor(InkActorClass,&Location,&RotatorSpawnParams,SpawnParams));
 		
 		//GEngine->AddOnScreenDebugMessage(-1,2,FColor::Red,FString::Printf(TEXT("%f,%f") , Location.X,Location.Y));
 		

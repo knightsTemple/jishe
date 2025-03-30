@@ -3,12 +3,19 @@
 
 #include "InkActors/Wood.h"
 
+#include "Misc/MapErrors.h"
+
 
 // Sets default values
 AWood::AWood()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("StaticMeshComponent");
+	StaticMesh->SetupAttachment(GetRootComponent());
+	Box = CreateDefaultSubobject<UBoxComponent>("BoxComponent");
+	Box->SetupAttachment(GetRootComponent());
 }
 
 // Called when the game starts or when spawned
