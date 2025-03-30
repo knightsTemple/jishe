@@ -111,11 +111,10 @@ void AInkTask::TaskCompleted(const TArray<AInkActor*>& NowActors)
 							CalculateRotationFit(FQuat(ActorRotation),FQuat(ExaminationInkActors[i] -> GetActorRotation())),
 							CalculateScaleFit(ActorScale,ExaminationInkActors[i] -> GetActorScale()),
 							0.3f,0.3f,0.3f);
-
+		InkActorFits.Add(Fit);
 		if (Fit <= 0.8f)
 		{
 			bLegal = false;
-			break;
 		}
 	}
 	if (bLegal)

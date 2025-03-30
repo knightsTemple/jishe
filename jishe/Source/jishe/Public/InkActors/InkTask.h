@@ -57,8 +57,11 @@ protected:
 	UPROPERTY(BlueprintAssignable)
 	FTaskChangedDelegate OnChanged;
 
-	UPROPERTY()
+	UPROPERTY(BlueprintAssignable)
 	FTaskSuccessfulDelegate OnSuccessful;
+
+	UPROPERTY(BlueprintReadOnly)
+	TArray<int> InkActorFits;
 	
 	UFUNCTION()
 	void GiveTask() const;
