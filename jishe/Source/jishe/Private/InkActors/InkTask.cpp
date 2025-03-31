@@ -136,13 +136,15 @@ void AInkTask::TaskFailed()
 void AInkTask::TaskSucceed()
 {
 	NowOperatingWood++;
-	if (NowOperatingWood > AllTasks.Num())
+	InkActorFactory->DeleteAllInkActors();
+	if (NowOperatingWood >= AllTasks.Num())
 	{
 		AllTasksCompleted();
 		return;
 	}
-	OnSuccessful.Broadcast();
 	
+	LoadNextTask(); // 加载下一个任务
+	OnSuccessful.Broadcast();
 }
 
 void AInkTask::AllTasksCompleted()
@@ -150,10 +152,13 @@ void AInkTask::AllTasksCompleted()
 	OnAllTasksComplete.Broadcast();
 }
 
-void AInkTask::TaskChanges()
+void AInkTask::LoadNextTask()
 {
-	InkActorFactory->ReceiveThisTask(AllTasks[NowOperatingWood]);
-	OnChanged.Broadcast();
+	if (AllTasks.IsValidIndex(NowOperatingWood))
+	{
+		InkActorFactory->ReceiveThisTask(AllTasks[NowOperatingWood]);
+		OnChanged.Broadcast();
+	}
 }
 
 

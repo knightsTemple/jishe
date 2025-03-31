@@ -119,6 +119,12 @@ void AInkActorFactory::OnMouseLeftClick(EInkActorType InkActorType , const FVect
 		AllInkActors.Add(NowOperatingInkActor);
 		NowOperatingInkActor = nullptr;
 		//GEngine->AddOnScreenDebugMessage(-1,2.f,FColor::Red,"Establish An Actor");
+
+		if (NowInkTaskClass && 
+			AllInkActors.Num() == NowTask.InkData.InkActorTransforms.Num())
+		{
+			NowInkTaskClass->TaskCompleted(AllInkActors);
+		}
 	}
 	else
 	{

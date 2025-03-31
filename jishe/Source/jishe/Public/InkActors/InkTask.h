@@ -82,7 +82,7 @@ protected:
 	void AllTasksCompleted();
 
 	UFUNCTION(BlueprintCallable)
-	void TaskChanges();
+	void LoadNextTask();
 	
 	UFUNCTION(BlueprintNativeEvent)
 	UDataTable* GetInkActorDataTable();
