@@ -4,7 +4,9 @@
 #include "InkActors/InkTask.h"
 
 #include "InkActors/InkActorFactory.h"
+#include "InkActors/InkCircle.h"
 #include "InkActors/InkInformation.h"
+#include "InkActors/InkLine.h"
 
 float CalculateLocationFit(const FVector& Loc1, const FVector& Loc2,const float MaxDist = 30) {
 	float dist = FVector::Dist(Loc1, Loc2);
@@ -12,15 +14,21 @@ float CalculateLocationFit(const FVector& Loc1, const FVector& Loc2,const float 
 }
 
 // 计算旋转拟合度
-float CalculateRotationFit(const FQuat& Rot1, const FQuat& Rot2,const float MaxAngle = 10) {
-	// 将四元数转换为旋转器
-	const FRotator Rotator1 = Rot1.Rotator();
-	const FRotator Rotator2 = Rot2.Rotator();
-
+float CalculateRotationFit(const FRotator& Rotator1, const FRotator& Rotator2, float MaxAngle = 10) {
 	// 计算两个旋转器之间的角度差
 	FRotator DeltaRotator = Rotator1 - Rotator2;
-	DeltaRotator.Normalize();
 
+	// 将角度差限制在-180到180的范围内
+	DeltaRotator.Pitch = FMath::Fmod(DeltaRotator.Pitch, 360.0f);
+	DeltaRotator.Yaw = FMath::Fmod(DeltaRotator.Yaw, 360.0f);
+	DeltaRotator.Roll = FMath::Fmod(DeltaRotator.Roll, 360.0f);
+
+	// 确保角度差在-180到180的范围内
+	DeltaRotator.Pitch = FMath::Abs(DeltaRotator.Pitch) > 180.0f ? 360.0f - FMath::Abs(DeltaRotator.Pitch) : DeltaRotator.Pitch;
+	DeltaRotator.Yaw = FMath::Abs(DeltaRotator.Yaw) > 180.0f ? 360.0f - FMath::Abs(DeltaRotator.Yaw) : DeltaRotator.Yaw;
+	DeltaRotator.Roll = FMath::Abs(DeltaRotator.Roll) > 180.0f ? 360.0f - FMath::Abs(DeltaRotator.Roll) : DeltaRotator.Roll;
+
+	// 计算绝对值
 	float pitchDiff = FMath::Abs(DeltaRotator.Pitch);
 	float yawDiff = FMath::Abs(DeltaRotator.Yaw);
 	float rollDiff = FMath::Abs(DeltaRotator.Roll);
@@ -45,9 +53,37 @@ float CalculateScaleFit(const FVector& Scale1, const FVector& Scale2,const float
 
 // 综合拟合度
 float CalculateOverallFit(float LocationFit, float RotationFit, float ScaleFit, 
-						  float LocationWeight, float RotationWeight, float ScaleWeight) {
+						  float LocationWeight = 0.3, float RotationWeight = 0.3, float ScaleWeight = 0.3) {
 	return (LocationFit * LocationWeight + RotationFit * RotationWeight + ScaleFit * ScaleWeight) / 
 		   (LocationWeight + RotationWeight + ScaleWeight);
+}
+
+float CalculatePositionFit(const FVector& Center1, const FVector& Center2, float MaxDist = 30) {
+	float dist = FVector::Dist(Center1, Center2);
+	return 1.0f - (dist / MaxDist);
+}
+
+// 计算半径拟合度
+float CalculateRadiusFit(float Radius1, float Radius2, float MaxRadiusDiff = 30) {
+	float diff = FMath::Abs(Radius1 - Radius2);
+	return 1.0f - (diff / MaxRadiusDiff);
+}
+
+// 计算形状拟合度
+float CalculateShapeFit(const FVector& Center1, float Radius1, const FVector& Center2, float Radius2, float MaxShapeDiff = 10) {
+	// 计算两个圆之间的相对位置和大小差异
+	float dist = FVector::Dist(Center1, Center2);
+	float radiusSum = Radius1 + Radius2;
+	float shapeDiff = FMath::Abs(dist - radiusSum);
+
+	return 1.0f - (shapeDiff / MaxShapeDiff);
+}
+
+// 综合拟合度
+float CalculateCirCleOverallFit(float PositionFit, float RadiusFit, float ShapeFit, 
+						  float PositionWeight, float RadiusWeight, float ShapeWeight) {
+	return (PositionFit * PositionWeight + RadiusFit * RadiusWeight + ShapeFit * ShapeWeight) / 
+		   (PositionWeight + RadiusWeight + ShapeWeight);
 }
 
 // Sets default values
@@ -107,10 +143,17 @@ void AInkTask::TaskCompleted(const TArray<AInkActor*>& NowActors)
 		FRotator ActorRotation = NowActors[i]->GetActorRotation();
 		FVector ActorScale = NowActors[i]->GetActorScale();
 
-		float Fit = CalculateOverallFit(CalculateLocationFit(ActorLocation,ExaminationInkActors[i] -> GetActorLocation()),
-							CalculateRotationFit(FQuat(ActorRotation),FQuat(ExaminationInkActors[i] -> GetActorRotation())),
-							CalculateScaleFit(ActorScale,ExaminationInkActors[i] -> GetActorScale()),
-							0.3f,0.3f,0.3f);
+		float Fit = NowActors[i]->GetClass() == AInkLine::StaticClass()
+			? CalculateOverallFit(
+			CalculateLocationFit(ActorLocation,ExaminationInkActors[i] -> GetActorLocation() , EvaluationValueParameters.MaxDist),
+			CalculateRotationFit(ActorRotation,ExaminationInkActors[i] -> GetActorRotation(),EvaluationValueParameters.MaxAngle),
+			CalculateScaleFit(ActorScale,ExaminationInkActors[i] -> GetActorScale(),EvaluationValueParameters.MaxScaleDiff),
+			0.3f,0.3f,0.3f)
+			: CalculateCirCleOverallFit(
+			CalculatePositionFit(ActorLocation,ExaminationInkActors[i]->GetActorLocation(),EvaluationValueParameters.MaxDist),
+			CalculateRadiusFit(Cast<AInkCircle>(NowActors[i])->InnerRadius , Cast<AInkCircle>(ExaminationInkActors[i]) -> InnerRadius , EvaluationValueParameters.MaxRadiusDiff),
+			CalculateShapeFit(ActorLocation,Cast<AInkCircle>(NowActors[i])->InnerRadius, ExaminationInkActors[i]->GetActorLocation(), Cast<AInkCircle>(ExaminationInkActors[i]) -> InnerRadius , EvaluationValueParameters.MaxShapeDiff),
+			0.3,0.3,0.3);
 		InkActorFits.Add(Fit);
 		if (Fit <= 0.8f)
 		{

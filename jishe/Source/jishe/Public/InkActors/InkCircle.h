@@ -17,8 +17,7 @@ class JISHE_API AInkCircle : public AInkActor
 
 public:
 	AInkCircle();
-
-protected:
+	
 	virtual void BeginPlay() override;
 
 	UPROPERTY(VisibleAnywhere, Category="Components")

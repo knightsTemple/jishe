@@ -13,6 +13,31 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FTaskSuccessfulDelegate);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FTaskFailedDelegate);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FTaskChangedDelegate);
 
+USTRUCT(BlueprintType)
+struct FEvaluationValueParameters
+{
+	GENERATED_BODY()
+
+	// 位置最大允许差异（单位：厘米）
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float MaxDist = 100.0f;
+
+	// 旋转最大允许差异（单位：度）
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float MaxAngle = 180.0f;
+
+	// 缩放最大允许差异
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float MaxScaleDiff = 0.5f;
+
+	// 半径最大允许差异
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float MaxRadiusDiff = 5.0f;
+
+	//用于评估两个圆形状差异的最大允许差异值
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float MaxShapeDiff = 10.f;
+};
 UCLASS()
 class JISHE_API AInkTask : public AActor
 {
@@ -44,6 +69,9 @@ protected:
 
 	UPROPERTY()
 	TArray<FInkDatabaseRow> AllTasks;
+
+	UPROPERTY(BlueprintReadWrite,EditAnywhere)
+	FEvaluationValueParameters EvaluationValueParameters;
 
 	UPROPERTY(BlueprintAssignable)
 	FTaskCompleteDelegate OnComplete;

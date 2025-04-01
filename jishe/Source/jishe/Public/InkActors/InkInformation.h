@@ -19,6 +19,8 @@ struct FInkDataContext
 	EInkActorType InkActorType;//参照墨线的类型
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	FTransform InkActorTransform;//参照墨线的三维坐标
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	float Radius;//圆的半径，如果不是0就填0
 };
 
 USTRUCT(BlueprintType)
