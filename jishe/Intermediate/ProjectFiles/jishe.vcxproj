@@ -1127,6 +1127,11 @@
       <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ClInclude Include="..\..\Source\jishe\jishe.h"/>
+    <ClCompile Include="..\..\Source\jishe\Private\Assembling\MainComponents.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_6)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_8)</ForcedIncludeFiles>
+      <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
     <ClCompile Include="..\..\Source\jishe\Private\InkActors\InkActor.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_6)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_8)</ForcedIncludeFiles>
@@ -1162,15 +1167,11 @@
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_8)</ForcedIncludeFiles>
       <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <ClInclude Include="..\..\Source\jishe\Public\Assembling\MainComponents.h"/>
     <ClInclude Include="..\..\Source\jishe\Public\InkActors\InkActor.h"/>
     <ClInclude Include="..\..\Source\jishe\Public\InkActors\InkActorFactory.h"/>
     <ClInclude Include="..\..\Source\jishe\Public\InkActors\InkActorInterface.h"/>
     <ClInclude Include="..\..\Source\jishe\Public\InkActors\InkCircle.h"/>
-    <ClCompile Include="..\..\Source\jishe\Public\InkActors\InkInformation.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_6)</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_8)</ForcedIncludeFiles>
-      <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
     <ClInclude Include="..\..\Source\jishe\Public\InkActors\InkInformation.h"/>
     <ClInclude Include="..\..\Source\jishe\Public\InkActors\InkLine.h"/>
     <ClInclude Include="..\..\Source\jishe\Public\InkActors\InkTask.h"/>

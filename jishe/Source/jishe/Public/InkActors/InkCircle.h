@@ -20,10 +20,10 @@ public:
 	
 	virtual void BeginPlay() override;
 
-	UPROPERTY(VisibleAnywhere, Category="Components")
+	UPROPERTY(VisibleAnywhere, Category="Components" , BlueprintReadOnly)
 	UProceduralMeshComponent* ProcMesh;
 
-	UPROPERTY(EditDefaultsOnly, Category="Materials")
+	UPROPERTY(EditAnywhere, Category="Materials",BlueprintReadOnly)
 	UMaterialInterface* RingMaterial;
 
 	float OuterRadius = 0.0f;

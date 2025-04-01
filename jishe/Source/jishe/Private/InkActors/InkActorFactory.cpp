@@ -5,6 +5,7 @@
 
 #include "Customizations/MathStructProxyCustomizations.h"
 #include "InkActors/InkActor.h"
+#include "InkActors/InkCircle.h"
 #include "InkActors/InkTask.h"
 #include "InkActors/Wood.h"
 #include "Kismet/GameplayStatics.h"
@@ -47,7 +48,7 @@ void AInkActorFactory::ReceiveThisTask(const FInkDatabaseRow& ThisTask)
 void AInkActorFactory::	GenerateExaminationInkActors()
 {
 	TArray<AInkActor*> ExaminationInkActors;
-	for (const auto [InkActorType, InkActorTransform] : NowTask.InkData.InkActorTransforms)
+	for (const auto [InkActorType, InkActorTransform, Radius] : NowTask.InkData.InkActorTransforms)
 	{
 		TSubclassOf<AInkActor> InkActorClass;
 		switch (InkActorType)
@@ -61,7 +62,10 @@ void AInkActorFactory::	GenerateExaminationInkActors()
 		SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 		AInkActor* InkActor = Cast<AInkActor>(GetWorld()->SpawnActor(InkActorClass, &Location , &Rotator , SpawnParameters));
 		InkActor->SetActorScale3D(InkActorTransform.GetScale3D());
-
+		if (Radius != 0)
+		{
+			Cast<AInkCircle>(InkActor) -> OnMouseChanging({Location.X + Radius, Location.Y, Location.Z,});
+		}
 		ExaminationInkActors.Add(InkActor);
 	}
 	NowInkTaskClass->ReceiveExaminationInkActors(ExaminationInkActors);

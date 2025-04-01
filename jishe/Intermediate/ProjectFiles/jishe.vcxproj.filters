@@ -1552,6 +1552,12 @@
     <Filter Include="Source\jishe\Private">
       <UniqueIdentifier>{ED7FA6FF-3F2D-31FA-A454-1D949253450D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\jishe\Private\Assembling">
+      <UniqueIdentifier>{F6E34E5F-8D2C-3914-BE30-CCEC18126F64}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\jishe\Private\Assembling\MainComponents.cpp">
+      <Filter>Source\jishe\Private\Assembling</Filter>
+    </ClCompile>
     <Filter Include="Source\jishe\Private\InkActors">
       <UniqueIdentifier>{5A57E930-BB2F-3688-A9DE-35151E76B558}</UniqueIdentifier>
     </Filter>
@@ -1579,6 +1585,12 @@
     <Filter Include="Source\jishe\Public">
       <UniqueIdentifier>{B6394463-3F60-369A-B025-1E80A2F1E292}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\jishe\Public\Assembling">
+      <UniqueIdentifier>{04EE6FE8-A835-320C-A6A5-7BB9ABCD491D}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\jishe\Public\Assembling\MainComponents.h">
+      <Filter>Source\jishe\Public\Assembling</Filter>
+    </ClInclude>
     <Filter Include="Source\jishe\Public\InkActors">
       <UniqueIdentifier>{FB4BB409-5E48-3BE3-9CDB-330B784D3D24}</UniqueIdentifier>
     </Filter>
@@ -1594,9 +1606,6 @@
     <ClInclude Include="..\..\Source\jishe\Public\InkActors\InkCircle.h">
       <Filter>Source\jishe\Public\InkActors</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\jishe\Public\InkActors\InkInformation.cpp">
-      <Filter>Source\jishe\Public\InkActors</Filter>
-    </ClCompile>
     <ClInclude Include="..\..\Source\jishe\Public\InkActors\InkInformation.h">
       <Filter>Source\jishe\Public\InkActors</Filter>
     </ClInclude>
