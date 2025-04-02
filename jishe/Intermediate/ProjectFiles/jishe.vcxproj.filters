@@ -1549,12 +1549,24 @@
     <ClInclude Include="..\..\Source\jishe\jishe.h">
       <Filter>Source\jishe</Filter>
     </ClInclude>
+    <Filter Include="Source\jishe\Assembling">
+      <UniqueIdentifier>{F0525982-8D5B-35BC-815C-7CD9E324CD1D}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\jishe\Assembling\PartComponents.cpp">
+      <Filter>Source\jishe\Assembling</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\jishe\Assembling\PartComponents.h">
+      <Filter>Source\jishe\Assembling</Filter>
+    </ClInclude>
     <Filter Include="Source\jishe\Private">
       <UniqueIdentifier>{ED7FA6FF-3F2D-31FA-A454-1D949253450D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\jishe\Private\Assembling">
       <UniqueIdentifier>{F6E34E5F-8D2C-3914-BE30-CCEC18126F64}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\jishe\Private\Assembling\AssemblingInformation.h">
+      <Filter>Source\jishe\Private\Assembling</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\jishe\Private\Assembling\MainComponents.cpp">
       <Filter>Source\jishe\Private\Assembling</Filter>
     </ClCompile>

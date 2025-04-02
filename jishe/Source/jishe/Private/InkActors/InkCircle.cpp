@@ -8,9 +8,6 @@ AInkCircle::AInkCircle()
     ProcMesh = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("ProcMesh"));
     RootComponent = ProcMesh;
 
-    static ConstructorHelpers::FObjectFinder<UMaterial> MatFinder(TEXT("/Game/Materials/M_Ring"));
-    if(MatFinder.Succeeded()) RingMaterial = MatFinder.Object;
-
     
 }
 

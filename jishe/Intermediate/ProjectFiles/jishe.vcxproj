@@ -1120,6 +1120,13 @@
       <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ClInclude Include="..\..\Source\jishe\jishe.h"/>
+    <ClCompile Include="..\..\Source\jishe\Assembling\PartComponents.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_6)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_8)</ForcedIncludeFiles>
+      <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\jishe\Assembling\PartComponents.h"/>
+    <ClInclude Include="..\..\Source\jishe\Private\Assembling\AssemblingInformation.h"/>
     <ClCompile Include="..\..\Source\jishe\Private\Assembling\MainComponents.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories_6)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles_8)</ForcedIncludeFiles>
