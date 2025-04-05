@@ -117,7 +117,7 @@ void AInkActorFactory::DeleteLastActor()
 
 void AInkActorFactory::OnMouseChanging(const FVector& NewLocation) 
 {
-	GEngine->AddOnScreenDebugMessage(-1,2,FColor::Yellow,FString::Printf(TEXT("X: %f , Y : %f , Z : %f"), NewLocation.X, NewLocation.Y, NewLocation.Z));
+	//GEngine->AddOnScreenDebugMessage(-1,2,FColor::Yellow,FString::Printf(TEXT("X: %f , Y : %f , Z : %f"), NewLocation.X, NewLocation.Y, NewLocation.Z));
 	if (NowOperatingInkActor)
 	{
 		NowOperatingInkActor->OnMouseChanging(NewLocation);
