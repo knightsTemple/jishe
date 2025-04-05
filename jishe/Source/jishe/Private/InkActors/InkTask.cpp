@@ -214,7 +214,7 @@ void AInkTask::TaskSucceed(float Fit)
 		return;
 	}
 	
-	LoadNextTask(); // 加载下一个任务
+	//LoadNextTask(); // 加载下一个任务
     OnSuccessful.Broadcast(Fit);
 }
 
