@@ -206,15 +206,6 @@ void AInkTask::TaskFailed(float Fit)
 
 void AInkTask::TaskSucceed(float Fit)
 {
-	NowOperatingWood++;
-	InkActorFactory->DeleteAllInkActors();
-	if (NowOperatingWood >= AllTasks.Num())
-	{
-		AllTasksCompleted();
-		return;
-	}
-	
-	//LoadNextTask(); // 加载下一个任务
     OnSuccessful.Broadcast(Fit);
 }
 
@@ -227,6 +218,13 @@ void AInkTask::LoadNextTask()
 {
 	if (AllTasks.IsValidIndex(NowOperatingWood))
 	{
+		NowOperatingWood++;
+		InkActorFactory->DeleteAllInkActors();
+		// if (NowOperatingWood >= AllTasks.Num())
+		// {
+		// 	AllTasksCompleted();
+		// 	return;
+		// }
 		InkActorFactory->ReceiveThisTask(AllTasks[NowOperatingWood]);
 		OnChanged.Broadcast();
 	}
