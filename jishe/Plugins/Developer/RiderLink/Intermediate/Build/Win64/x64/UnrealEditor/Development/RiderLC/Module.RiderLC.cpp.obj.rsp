@@ -1,8 +1,16 @@
+<<<<<<< Updated upstream
 "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\Module.RiderLC.cpp"
 /FI"D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\Definitions.h"
 /Fo"D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\Module.RiderLC.cpp.obj"
 /sourceDependencies "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\Module.RiderLC.cpp.dep.json"
 @"D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\RiderLC.Shared.rsp"
+=======
+"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\Module.RiderLC.cpp"
+/FI"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\Definitions.h"
+/Fo"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\Module.RiderLC.cpp.obj"
+/sourceDependencies "F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\Module.RiderLC.cpp.dep.json"
+@"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\RiderLC.Shared.rsp"
+>>>>>>> Stashed changes
 /Zc:inline
 /nologo
 /Oi

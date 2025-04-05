@@ -6,6 +6,12 @@
 /NAME:"UnrealEditor-RiderShaderInfo.dll"
 /IGNORE:4221
 /NODEFAULTLIB
+<<<<<<< Updated upstream
 "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderShaderInfo\Module.RiderShaderInfo.cpp.obj"
 "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderShaderInfo\Default.rc2.res"
 /OUT:"D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderShaderInfo\UnrealEditor-RiderShaderInfo.lib"
+=======
+"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderShaderInfo\Module.RiderShaderInfo.cpp.obj"
+"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderShaderInfo\Default.rc2.res"
+/OUT:"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderShaderInfo\UnrealEditor-RiderShaderInfo.lib"
+>>>>>>> Stashed changes

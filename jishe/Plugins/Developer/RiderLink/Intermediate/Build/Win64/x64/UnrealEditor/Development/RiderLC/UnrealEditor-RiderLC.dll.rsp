@@ -35,12 +35,21 @@
 /NODEFAULTLIB:"LIBCD"
 /NODEFAULTLIB:"LIBCPD"
 /FUNCTIONPADMIN:6
+<<<<<<< Updated upstream
 "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\Module.RiderLC.cpp.obj"
 "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\Default.rc2.res"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Core\UnrealEditor-Core.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Engine\UnrealEditor-Engine.lib"
 "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLink\UnrealEditor-RiderLink.lib"
 "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\UnrealEditor-RD.lib"
+=======
+"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\Module.RiderLC.cpp.obj"
+"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\Default.rc2.res"
+"..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Core\UnrealEditor-Core.lib"
+"..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Engine\UnrealEditor-Engine.lib"
+"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLink\UnrealEditor-RiderLink.lib"
+"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\UnrealEditor-RD.lib"
+>>>>>>> Stashed changes
 "delayimp.lib"
 "wininet.lib"
 "rpcrt4.lib"
@@ -66,7 +75,13 @@
 "synchronization.lib"
 "dwmapi.lib"
 "imm32.lib"
+<<<<<<< Updated upstream
 /OUT:"D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderLC.dll"
 /IMPLIB:"D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\UnrealEditor-RiderLC.sup.lib"
 /PDB:"D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderLC.pdb"
+=======
+/OUT:"F:\jishe\jishe\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderLC.dll"
+/IMPLIB:"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\UnrealEditor-RiderLC.sup.lib"
+/PDB:"F:\jishe\jishe\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderLC.pdb"
+>>>>>>> Stashed changes
 /ignore:4078

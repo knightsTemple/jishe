@@ -35,11 +35,19 @@
 /NODEFAULTLIB:"LIBCD"
 /NODEFAULTLIB:"LIBCPD"
 /FUNCTIONPADMIN:6
+<<<<<<< Updated upstream
 "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderBlueprint\Module.RiderBlueprint.cpp.obj"
 "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderBlueprint\Default.rc2.res"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Core\UnrealEditor-Core.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\SlateCore\UnrealEditor-SlateCore.lib"
 "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLink\UnrealEditor-RiderLink.lib"
+=======
+"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderBlueprint\Module.RiderBlueprint.cpp.obj"
+"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderBlueprint\Default.rc2.res"
+"..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Core\UnrealEditor-Core.lib"
+"..\Intermediate\Build\Win64\x64\UnrealEditor\Development\SlateCore\UnrealEditor-SlateCore.lib"
+"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLink\UnrealEditor-RiderLink.lib"
+>>>>>>> Stashed changes
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Slate\UnrealEditor-Slate.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\AssetRegistry\UnrealEditor-AssetRegistry.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\MessagingCommon\UnrealEditor-MessagingCommon.lib"
@@ -47,7 +55,11 @@
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\UnrealEdMessages\UnrealEditor-UnrealEdMessages.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Engine\UnrealEditor-Engine.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\CoreUObject\UnrealEditor-CoreUObject.lib"
+<<<<<<< Updated upstream
 "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\UnrealEditor-RD.lib"
+=======
+"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\UnrealEditor-RD.lib"
+>>>>>>> Stashed changes
 "delayimp.lib"
 "wininet.lib"
 "rpcrt4.lib"
@@ -73,7 +85,13 @@
 "synchronization.lib"
 "dwmapi.lib"
 "imm32.lib"
+<<<<<<< Updated upstream
 /OUT:"D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderBlueprint.dll"
 /IMPLIB:"D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderBlueprint\UnrealEditor-RiderBlueprint.sup.lib"
 /PDB:"D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderBlueprint.pdb"
+=======
+/OUT:"F:\jishe\jishe\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderBlueprint.dll"
+/IMPLIB:"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderBlueprint\UnrealEditor-RiderBlueprint.sup.lib"
+/PDB:"F:\jishe\jishe\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderBlueprint.pdb"
+>>>>>>> Stashed changes
 /ignore:4078

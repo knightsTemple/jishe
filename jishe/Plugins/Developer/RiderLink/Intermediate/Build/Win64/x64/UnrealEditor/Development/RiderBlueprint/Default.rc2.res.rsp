@@ -81,5 +81,9 @@
 /DPROJECT_COPYRIGHT_STRING="Fill out your copyright notice in the Description page of Project Settings."
 /DPROJECT_PRODUCT_NAME="Third Person BP Game Template"
 /DPROJECT_PRODUCT_IDENTIFIER=jishe
+<<<<<<< Updated upstream
 /fo "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderBlueprint\Default.rc2.res"
+=======
+/fo "F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderBlueprint\Default.rc2.res"
+>>>>>>> Stashed changes
 "..\Build\Windows\Resources\Default.rc2"

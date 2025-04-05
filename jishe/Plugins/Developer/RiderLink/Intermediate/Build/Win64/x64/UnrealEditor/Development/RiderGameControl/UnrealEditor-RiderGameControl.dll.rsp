@@ -35,10 +35,17 @@
 /NODEFAULTLIB:"LIBCD"
 /NODEFAULTLIB:"LIBCPD"
 /FUNCTIONPADMIN:6
+<<<<<<< Updated upstream
 "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderGameControl\Module.RiderGameControl.cpp.obj"
 "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderGameControl\Default.rc2.res"
 "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\UnrealEditor-RD.lib"
 "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLink\UnrealEditor-RiderLink.lib"
+=======
+"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderGameControl\Module.RiderGameControl.cpp.obj"
+"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderGameControl\Default.rc2.res"
+"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\UnrealEditor-RD.lib"
+"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLink\UnrealEditor-RiderLink.lib"
+>>>>>>> Stashed changes
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\HeadMountedDisplay\UnrealEditor-HeadMountedDisplay.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\LevelEditor\UnrealEditor-LevelEditor.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\UnrealEd\UnrealEditor-UnrealEd.lib"
@@ -71,7 +78,13 @@
 "synchronization.lib"
 "dwmapi.lib"
 "imm32.lib"
+<<<<<<< Updated upstream
 /OUT:"D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderGameControl.dll"
 /IMPLIB:"D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderGameControl\UnrealEditor-RiderGameControl.sup.lib"
 /PDB:"D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderGameControl.pdb"
+=======
+/OUT:"F:\jishe\jishe\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderGameControl.dll"
+/IMPLIB:"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderGameControl\UnrealEditor-RiderGameControl.sup.lib"
+/PDB:"F:\jishe\jishe\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderGameControl.pdb"
+>>>>>>> Stashed changes
 /ignore:4078

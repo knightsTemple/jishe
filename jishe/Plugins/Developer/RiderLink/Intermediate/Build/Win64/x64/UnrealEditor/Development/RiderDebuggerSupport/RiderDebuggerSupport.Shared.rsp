@@ -1,5 +1,9 @@
 /I "."
+<<<<<<< Updated upstream
 /I "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Source\RiderDebuggerSupport\Private"
+=======
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RiderDebuggerSupport\Private"
+>>>>>>> Stashed changes
 /I "Runtime\Core\Public"
 /I "Runtime\Core\Internal"
 /I "Runtime\TraceLog\Public"
@@ -282,7 +286,11 @@
 /I "Editor\SceneDepthPickerMode\Public"
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\AnimationEditMode\UHT"
 /I "Editor\AnimationEditMode\Public"
+<<<<<<< Updated upstream
 /I "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Source"
+=======
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source"
+>>>>>>> Stashed changes
 /external:W0
 /external:I "ThirdParty\LibTiff\Source\Win64"
 /external:I "ThirdParty\LibTiff\Source"

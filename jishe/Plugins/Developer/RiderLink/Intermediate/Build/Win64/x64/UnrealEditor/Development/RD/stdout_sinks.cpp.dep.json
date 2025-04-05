@@ -1,10 +1,17 @@
 {
     "Version": "1.2",
     "Data": {
+<<<<<<< Updated upstream
         "Source": "d:\\epic\\github\\jishe\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\src\\stdout_sinks.cpp",
         "ProvidedModule": "",
         "Includes": [
             "d:\\epic\\github\\jishe\\jishe\\jishe\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\rd\\definitions.h",
+=======
+        "Source": "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\src\\stdout_sinks.cpp",
+        "ProvidedModule": "",
+        "Includes": [
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\rd\\definitions.h",
+>>>>>>> Stashed changes
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\mutex",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\yvals_core.h",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\vcruntime.h",
@@ -102,12 +109,21 @@
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\string",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\cctype",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\ctype.h",
+<<<<<<< Updated upstream
             "d:\\epic\\github\\jishe\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\null_mutex.h",
             "d:\\epic\\github\\jishe\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\async.h",
             "d:\\epic\\github\\jishe\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\async_logger.h",
             "d:\\epic\\github\\jishe\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\logger.h",
             "d:\\epic\\github\\jishe\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\common.h",
             "d:\\epic\\github\\jishe\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\tweakme.h",
+=======
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\null_mutex.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\async.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\async_logger.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\logger.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\common.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\tweakme.h",
+>>>>>>> Stashed changes
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\chrono",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\xfilesystem_abi.h",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\functional",
@@ -119,11 +135,19 @@
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\__msvc_bit_utils.hpp",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\xbit_ops.h",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\xnode_handle.h",
+<<<<<<< Updated upstream
             "d:\\epic\\github\\jishe\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\fmt.h",
             "d:\\epic\\github\\jishe\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\bundled\\core.h",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\iterator",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\string_view",
             "d:\\epic\\github\\jishe\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\bundled\\format.h",
+=======
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\fmt.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\bundled\\core.h",
+            "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\iterator",
+            "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\string_view",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\bundled\\format.h",
+>>>>>>> Stashed changes
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\intrin.h",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\setjmp.h",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\immintrin.h",
@@ -137,6 +161,7 @@
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\mmintrin.h",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\zmmintrin.h",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\ammintrin.h",
+<<<<<<< Updated upstream
             "d:\\epic\\github\\jishe\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\xchar.h",
             "d:\\epic\\github\\jishe\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\bundled\\xchar.h",
             "d:\\epic\\github\\jishe\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\log_msg.h",
@@ -157,6 +182,28 @@
             "d:\\epic\\github\\jishe\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\sinks\\sink.h",
             "d:\\epic\\github\\jishe\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\formatter.h",
             "d:\\epic\\github\\jishe\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\windows_include.h",
+=======
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\xchar.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\bundled\\xchar.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\log_msg.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\backtracer.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\log_msg_buffer.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\circular_q.h",
+            "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\cassert",
+            "c:\\program files (x86)\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\assert.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\os.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\registry.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\thread_pool.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\mpmc_blocking_q.h",
+            "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\condition_variable",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\sinks\\stdout_sinks-inl.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\sinks\\stdout_sinks.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\console_globals.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\synchronous_factory.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\sinks\\sink.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\formatter.h",
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\windows_include.h",
+>>>>>>> Stashed changes
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.22621.0\\um\\windows.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.22621.0\\shared\\winapifamily.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.22621.0\\shared\\winpackagefamily.h",
@@ -265,7 +312,11 @@
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.22621.0\\um\\mcx.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.22621.0\\um\\imm.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.22621.0\\um\\ime_cmodes.h",
+<<<<<<< Updated upstream
             "d:\\epic\\github\\jishe\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\pattern_formatter.h",
+=======
+            "f:\\jishe\\jishe\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\pattern_formatter.h",
+>>>>>>> Stashed changes
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\io.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\corecrt_io.h"
         ],

@@ -1,4 +1,5 @@
 /I "."
+<<<<<<< Updated upstream
 /I "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Source\RiderGameControl\Private"
 /I "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Source\RD\src"
 /I "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Source\RD\src\rd_core_cpp"
@@ -23,6 +24,32 @@
 /I "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Source\RiderLink\Public\Model\Library"
 /I "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Source\RiderLink\Public\Model\RdEditorProtocol"
 /I "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Source\RiderLink\Public"
+=======
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RiderGameControl\Private"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RD\src"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RD\src\rd_core_cpp"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RD\src\rd_core_cpp\src\main"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RD\src\rd_framework_cpp"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RD\src\rd_framework_cpp\src\main"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RD\src\rd_framework_cpp\src\main\util"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RD\src\rd_gen_cpp\src"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RD\thirdparty"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RD\thirdparty\ordered-map\include"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RD\thirdparty\optional\tl"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RD\thirdparty\variant\include"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RD\thirdparty\string-view-lite\include"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RD\thirdparty\spdlog\include"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RD\thirdparty\clsocket\src"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RD\thirdparty\CTPL\include"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RD\thirdparty\utf-cpp\include"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source"
+/I "Runtime\Core\Public"
+/I "Runtime\Core\Internal"
+/I "Runtime\TraceLog\Public"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RiderLink\Public\Model\Library"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RiderLink\Public\Model\RdEditorProtocol"
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RiderLink\Public"
+>>>>>>> Stashed changes
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\HeadMountedDisplay\UHT"
 /I "Runtime\HeadMountedDisplay\Public"
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\LevelEditor\UHT"
@@ -302,7 +329,11 @@
 /I "Editor\VREditor\Public"
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\ViewportInteraction\UHT"
 /I "Editor\ViewportInteraction\Public"
+<<<<<<< Updated upstream
 /I "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Source\RiderGameControl\Public"
+=======
+/I "F:\jishe\jishe\Plugins\Developer\RiderLink\Source\RiderGameControl\Public"
+>>>>>>> Stashed changes
 /external:W0
 /external:I "ThirdParty\LibTiff\Source\Win64"
 /external:I "ThirdParty\LibTiff\Source"

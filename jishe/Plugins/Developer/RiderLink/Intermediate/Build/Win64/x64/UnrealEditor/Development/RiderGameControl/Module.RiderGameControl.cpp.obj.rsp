@@ -1,8 +1,16 @@
+<<<<<<< Updated upstream
 "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderGameControl\Module.RiderGameControl.cpp"
 /FI"D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderGameControl\Definitions.h"
 /Fo"D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderGameControl\Module.RiderGameControl.cpp.obj"
 /sourceDependencies "D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderGameControl\Module.RiderGameControl.cpp.dep.json"
 @"D:\Epic\GitHub\jishe\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderGameControl\RiderGameControl.Shared.rsp"
+=======
+"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderGameControl\Module.RiderGameControl.cpp"
+/FI"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderGameControl\Definitions.h"
+/Fo"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderGameControl\Module.RiderGameControl.cpp.obj"
+/sourceDependencies "F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderGameControl\Module.RiderGameControl.cpp.dep.json"
+@"F:\jishe\jishe\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderGameControl\RiderGameControl.Shared.rsp"
+>>>>>>> Stashed changes
 /Zc:inline
 /nologo
 /Oi
