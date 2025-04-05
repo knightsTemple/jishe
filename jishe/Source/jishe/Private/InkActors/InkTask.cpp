@@ -230,6 +230,10 @@ void AInkTask::LoadNextTask()
 		InkActorFactory->ReceiveThisTask(AllTasks[NowOperatingWood]);
 		OnChanged.Broadcast();
 	}
+	else
+	{
+		AllTasksCompleted();
+	}
 }
 
 
