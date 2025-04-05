@@ -9,8 +9,8 @@
 #include "InkTask.generated.h"
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FTaskCompleteDelegate);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FAllTasksCompleteDelegate);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FTaskSuccessfulDelegate);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FTaskFailedDelegate);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FTaskSuccessfulDelegate, float , Rate);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FTaskFailedDelegate , float ,Rate);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FTaskChangedDelegate);
 
 USTRUCT(BlueprintType)
@@ -101,10 +101,10 @@ protected:
 	void TaskCompleted(const TArray<AInkActor*>& NowActors);
 
 	UFUNCTION(BlueprintCallable)
-	void TaskFailed();
+	void TaskFailed(float Fit);
 	
 	UFUNCTION(BlueprintCallable)
-	void TaskSucceed();
+	void TaskSucceed(float Fit);
 
 	UFUNCTION(BlueprintCallable)
 	void AllTasksCompleted();

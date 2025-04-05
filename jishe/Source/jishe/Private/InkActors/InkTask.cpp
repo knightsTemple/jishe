@@ -143,6 +143,7 @@ void AInkTask::ReceiveExaminationInkActors(const TArray<AInkActor*>& Array)
 
 void AInkTask::TaskCompleted(const TArray<AInkActor*>& NowActors)
 {
+	
 	if (NowActors.Num() != ExaminationInkActors.Num())
 	{
 		return;
@@ -179,28 +180,31 @@ void AInkTask::TaskCompleted(const TArray<AInkActor*>& NowActors)
 		};
 		float Fit = CalculateFit();
 		InkActorFits.Add(Fit);
-		if (Fit <= 0.8f)
-		{
-			bLegal = false;
-		}
 	}
+	float Sum = 0;
+	for (float i : InkActorFits)
+	{
+		Sum += i;
+	}
+	float AllFit = Sum / InkActorFits.Num();
 	if (bLegal)
 	{
-		TaskSucceed();
+		TaskSucceed(AllFit);
 	}
 	else
 	{
-		TaskFailed();
+		TaskFailed(AllFit);
 	}
+	OnComplete.Broadcast();
 }
 
-void AInkTask::TaskFailed()
+void AInkTask::TaskFailed(float Fit)
 {
-	OnFailed.Broadcast();
+	OnFailed.Broadcast(Fit);
 }
 
 
-void AInkTask::TaskSucceed()
+void AInkTask::TaskSucceed(float Fit)
 {
 	NowOperatingWood++;
 	InkActorFactory->DeleteAllInkActors();
@@ -211,7 +215,7 @@ void AInkTask::TaskSucceed()
 	}
 	
 	LoadNextTask(); // 加载下一个任务
-	OnSuccessful.Broadcast();
+    OnSuccessful.Broadcast(Fit);
 }
 
 void AInkTask::AllTasksCompleted()
