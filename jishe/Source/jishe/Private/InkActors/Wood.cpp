@@ -12,10 +12,12 @@ AWood::AWood()
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	Root = CreateDefaultSubobject<USceneComponent>("Root");
+	SetRootComponent(Root);
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("StaticMeshComponent");
-	StaticMesh->SetupAttachment(GetRootComponent());
+	StaticMesh->SetupAttachment(Root);
 	Box = CreateDefaultSubobject<UBoxComponent>("BoxComponent");
-	Box->SetupAttachment(GetRootComponent());
+	Box->SetupAttachment(Root);
 }
 
 // Called when the game starts or when spawned

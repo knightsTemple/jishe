@@ -29,4 +29,7 @@ public:
 
 	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
 	UBoxComponent* Box;
+
+	UPROPERTY(EditAnywhere,BlueprintReadOnly)
+	USceneComponent* Root;
 };

@@ -23,24 +23,27 @@ AInkActorFactory::AInkActorFactory()
 	check(InkCircleClass);
 	NowOperatingInkActor = nullptr;
 
-	NowInkTaskClass = Cast<AInkTask>(UGameplayStatics::GetActorOfClass(GetWorld() , AInkTask::StaticClass()));
+	
 }
 
 // Called when the game starts or when spawned
 void AInkActorFactory::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	NowInkTaskClass = Cast<AInkTask>(UGameplayStatics::GetActorOfClass(GetWorld() , AInkTask::StaticClass()));
 }
 
 
-void AInkActorFactory::ReceiveThisTask(const FInkDatabaseRow& ThisTask)
+void AInkActorFactory::ReceiveThisTask(FInkDatabaseRow& ThisTask)
 {
 	NowTask = ThisTask;
 	FActorSpawnParameters SpawnParameters;
 	SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	FRotator SpawnRotation = FRotator(0, 0, 0);
-	NowWood->Destroy();
+	if (NowWood != nullptr)
+	{
+		NowWood->Destroy();
+	}
 	NowWood = Cast<AWood>(GetWorld()->SpawnActor(NowTask.WoodType.Get() , &WoodSpawnLocation , &SpawnRotation, SpawnParameters));
 	GenerateExaminationInkActors();
 }
@@ -48,7 +51,9 @@ void AInkActorFactory::ReceiveThisTask(const FInkDatabaseRow& ThisTask)
 void AInkActorFactory::	GenerateExaminationInkActors()
 {
 	TArray<AInkActor*> ExaminationInkActors;
-	for (const auto [InkActorType, InkActorTransform, Radius] : NowTask.InkData.InkActorTransforms)
+	auto Array = NowTask.InkData.InkActorTransforms;
+	auto ArrayCopy = Array;
+	for (auto [InkActorType, InkActorTransform, Radius] : ArrayCopy)
 	{
 		TSubclassOf<AInkActor> InkActorClass;
 		switch (InkActorType)
@@ -69,6 +74,7 @@ void AInkActorFactory::	GenerateExaminationInkActors()
 		ExaminationInkActors.Add(InkActor);
 	}
 	NowInkTaskClass->ReceiveExaminationInkActors(ExaminationInkActors);
+	MaxActorNum = ExaminationInkActors.Num();
 }
 
 // Called every frame
@@ -88,7 +94,7 @@ void AInkActorFactory::DeleteAllInkActors()
 	{
 		NowOperatingInkActor->Destroy();
 	}
-	
+	OnActorNumChanged.Broadcast(0.f);
 }
 
 void AInkActorFactory::DeleteLastActor()
@@ -105,6 +111,8 @@ void AInkActorFactory::DeleteLastActor()
 	}
 	AInkActor* CurActor =  AllInkActors.Pop();
 	CurActor->Destroy();
+	OnActorNumChanged.Broadcast(AllInkActors.Num() / MaxActorNum);
+	
 }
 
 void AInkActorFactory::OnMouseChanging(const FVector& NewLocation) 
@@ -123,7 +131,7 @@ void AInkActorFactory::OnMouseLeftClick(EInkActorType InkActorType , const FVect
 		AllInkActors.Add(NowOperatingInkActor);
 		NowOperatingInkActor = nullptr;
 		//GEngine->AddOnScreenDebugMessage(-1,2.f,FColor::Red,"Establish An Actor");
-
+		OnActorNumChanged.Broadcast(static_cast<float>(AllInkActors.Num()) / static_cast<float>(MaxActorNum));
 		if (NowInkTaskClass && 
 			AllInkActors.Num() == NowTask.InkData.InkActorTransforms.Num())
 		{
@@ -132,6 +140,10 @@ void AInkActorFactory::OnMouseLeftClick(EInkActorType InkActorType , const FVect
 	}
 	else
 	{
+		if (AllInkActors.Num() >= MaxActorNum)
+		{
+			return;
+		}
 		//GEngine->AddOnScreenDebugMessage(-1,2.f,FColor::Red,"Create An Actor");
 		TSubclassOf<AInkActor> InkActorClass ;
 		switch (InkActorType)

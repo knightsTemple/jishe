@@ -11,7 +11,7 @@ class AWood;
 class AInkActor;
 
 
-
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnActorNumChanged , float , NumRate);
 UCLASS()
 class JISHE_API AInkActorFactory : public AActor
 {
@@ -61,10 +61,13 @@ protected:
 	int NowLineNum = 0;
 
 	UPROPERTY()
+	int MaxActorNum = 0;
+
+	UPROPERTY()
 	FInkDatabaseRow NowTask;
 
 	UFUNCTION()
-	void ReceiveThisTask(const FInkDatabaseRow& ThisTask);
+	void ReceiveThisTask(FInkDatabaseRow& ThisTask);
 	
 	UFUNCTION()
 	void GenerateExaminationInkActors();
@@ -74,6 +77,9 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnActorNumChanged OnActorNumChanged;
 
 	UFUNCTION(BlueprintCallable)
 	void DeleteAllInkActors();

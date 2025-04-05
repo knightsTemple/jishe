@@ -7,6 +7,7 @@
 #include "InkActors/InkCircle.h"
 #include "InkActors/InkInformation.h"
 #include "InkActors/InkLine.h"
+#include "Kismet/GameplayStatics.h"
 
 float CalculateLocationFit(const FVector& Loc1, const FVector& Loc2,const float MaxDist = 30) {
 	float dist = FVector::Dist(Loc1, Loc2);
@@ -86,12 +87,23 @@ float CalculateCirCleOverallFit(float PositionFit, float RadiusFit, float ShapeF
 		   (PositionWeight + RadiusWeight + ShapeWeight);
 }
 
+
+
 // Sets default values
 AInkTask::AInkTask()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 	
+	
+
+	
+}
+
+// Called when the game starts or when spawned
+void AInkTask::BeginPlay()
+{
+	Super::BeginPlay();
 	DataTable = GetInkActorDataTable();
 	if (DataTable == nullptr)
 	{
@@ -104,14 +116,8 @@ AInkTask::AInkTask()
 	{
 		AllTasks.Push(*Row);
 	}
-
-	
-}
-
-// Called when the game starts or when spawned
-void AInkTask::BeginPlay()
-{
-	Super::BeginPlay();
+	InkActorFactory =Cast<AInkActorFactory>( UGameplayStatics::GetActorOfClass(GetWorld() , AInkActorFactory::StaticClass()));
+	GiveTask();
 	
 }
 
@@ -122,7 +128,12 @@ UDataTable* AInkTask::GetInkActorDataTable_Implementation()
 
 void AInkTask::GiveTask() const
 {
-	InkActorFactory->ReceiveThisTask(*DataTable->FindRow<FInkDatabaseRow>(FName(FString::FromInt(NowOperatingWood)), TEXT("GiveMaxTasks")));
+	if (DataTable == nullptr)
+	{
+		return;
+	}
+	FInkDatabaseRow Row = *DataTable->FindRow<FInkDatabaseRow>(FName(FString::FromInt(NowOperatingWood + 1)), TEXT("GiveMaxTasks"));
+	InkActorFactory->ReceiveThisTask(Row);
 }
 
 void AInkTask::ReceiveExaminationInkActors(const TArray<AInkActor*>& Array)
@@ -143,17 +154,30 @@ void AInkTask::TaskCompleted(const TArray<AInkActor*>& NowActors)
 		FRotator ActorRotation = NowActors[i]->GetActorRotation();
 		FVector ActorScale = NowActors[i]->GetActorScale();
 
-		float Fit = NowActors[i]->GetClass() == AInkLine::StaticClass()
-			? CalculateOverallFit(
+		auto CalculateFit = [&]()-> float
+		{
+			if (NowActors[i]->StaticClass() != ExaminationInkActors[i]->StaticClass())
+			{
+					return 0.0f;
+			}
+			if (NowActors[i]->StaticClass() == AInkCircle::StaticClass())
+			{
+				return CalculateCirCleOverallFit(
+						CalculatePositionFit(NowActors[i]->GetActorLocation(),ExaminationInkActors[i]->GetActorLocation(),EvaluationValueParameters.MaxDist),
+						CalculateRadiusFit(Cast<AInkCircle>(NowActors[i])->InnerRadius , Cast<AInkCircle>(ExaminationInkActors[i]) -> InnerRadius , EvaluationValueParameters.MaxRadiusDiff),
+						CalculateShapeFit(ActorLocation,Cast<AInkCircle>(NowActors[i])->InnerRadius, ExaminationInkActors[i]->GetActorLocation(), Cast<AInkCircle>(ExaminationInkActors[i]) -> InnerRadius , EvaluationValueParameters.MaxShapeDiff),
+						0.3,0.3,0.3);
+			}
+
+			return CalculateOverallFit(
 			CalculateLocationFit(ActorLocation,ExaminationInkActors[i] -> GetActorLocation() , EvaluationValueParameters.MaxDist),
 			CalculateRotationFit(ActorRotation,ExaminationInkActors[i] -> GetActorRotation(),EvaluationValueParameters.MaxAngle),
 			CalculateScaleFit(ActorScale,ExaminationInkActors[i] -> GetActorScale(),EvaluationValueParameters.MaxScaleDiff),
-			0.3f,0.3f,0.3f)
-			: CalculateCirCleOverallFit(
-			CalculatePositionFit(ActorLocation,ExaminationInkActors[i]->GetActorLocation(),EvaluationValueParameters.MaxDist),
-			CalculateRadiusFit(Cast<AInkCircle>(NowActors[i])->InnerRadius , Cast<AInkCircle>(ExaminationInkActors[i]) -> InnerRadius , EvaluationValueParameters.MaxRadiusDiff),
-			CalculateShapeFit(ActorLocation,Cast<AInkCircle>(NowActors[i])->InnerRadius, ExaminationInkActors[i]->GetActorLocation(), Cast<AInkCircle>(ExaminationInkActors[i]) -> InnerRadius , EvaluationValueParameters.MaxShapeDiff),
-			0.3,0.3,0.3);
+			0.3f,0.3f,0.3f);
+		
+			
+		};
+		float Fit = CalculateFit();
 		InkActorFits.Add(Fit);
 		if (Fit <= 0.8f)
 		{

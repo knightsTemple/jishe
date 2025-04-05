@@ -23,7 +23,7 @@ public:
 	UPROPERTY(VisibleAnywhere, Category="Components" , BlueprintReadOnly)
 	UProceduralMeshComponent* ProcMesh;
 
-	UPROPERTY(EditAnywhere, Category="Materials",BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, Category="Materials",BlueprintReadWrite)
 	UMaterialInterface* RingMaterial;
 
 	float OuterRadius = 0.0f;

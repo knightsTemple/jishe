@@ -2,10 +2,8 @@
 /jishe/.vs
 /jishe/Intermediate
 /jishe/Binaries
-/jishe/Content/HY_
 /jishe/Content/Japanese_Village
 /jishe/Content/Man
-<<<<<<< Updated upstream
 /jishe/Content/HY_
 /jishe/Content/People_Working_UE5
 jishe/Content/HY_/UI/Widget/UMG_Begin.uasset
@@ -13,6 +11,3 @@ jishe/Content/HY_/UI/Widget/UMG_Begin.uasset
 /jishe/Plugins/Developer/RiderLink/Binaries
 /jishe/Intermediate
 /jishe/Binaries
-=======
-/jishe/Content/People_Working_UE5
->>>>>>> Stashed changes
