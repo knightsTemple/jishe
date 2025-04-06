@@ -212,15 +212,16 @@ void AInkTask::AllTasksCompleted()
 
 void AInkTask::LoadNextTask()
 {
+	NowOperatingWood++;
 	if (AllTasks.IsValidIndex(NowOperatingWood))
 	{
-		NowOperatingWood++;
+		
 		InkActorFactory->DeleteAllInkActors();
-		// if (NowOperatingWood >= AllTasks.Num())
-		// {
-		// 	AllTasksCompleted();
-		// 	return;
-		// }
+		for (int i = 0 ; i < ExaminationInkActors.Num() ; i++)
+		{
+			ExaminationInkActors[i]->Destroy();
+		}
+		ExaminationInkActors.Empty();
 		InkActorFactory->ReceiveThisTask(AllTasks[NowOperatingWood]);
 		OnChanged.Broadcast();
 	}

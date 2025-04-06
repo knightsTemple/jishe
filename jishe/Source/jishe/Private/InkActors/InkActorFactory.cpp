@@ -45,6 +45,7 @@ void AInkActorFactory::ReceiveThisTask(FInkDatabaseRow& ThisTask)
 		NowWood->Destroy();
 	}
 	NowWood = Cast<AWood>(GetWorld()->SpawnActor(NowTask.WoodType.Get() , &WoodSpawnLocation , &SpawnRotation, SpawnParameters));
+	
 	GenerateExaminationInkActors();
 }
 
@@ -61,16 +62,24 @@ void AInkActorFactory::	GenerateExaminationInkActors()
 		case EInkActorType::Line: InkActorClass = InkLineClass; break;
 		case EInkActorType::Circle: InkActorClass = InkCircleClass; break;
 		}
-		const FVector Location = InkActorTransform.GetLocation() + NowWood->GetActorLocation() + NowWood->Box->GetScaledBoxExtent();
+		FVector Location = InkActorTransform.GetLocation() + NowWood->GetActorLocation();
+		Location.Z += NowWood -> Box->GetScaledBoxExtent().Z * 2;
 		const FRotator Rotator(InkActorTransform.GetRotation());
 		FActorSpawnParameters SpawnParameters;
 		SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 		AInkActor* InkActor = Cast<AInkActor>(GetWorld()->SpawnActor(InkActorClass, &Location , &Rotator , SpawnParameters));
-		InkActor->SetActorScale3D(InkActorTransform.GetScale3D());
-		if (Radius != 0)
+		InkActor->SetActorNecessaryNum(InkActorType == EInkActorType::Circle ? CircleRadiusDelta : LineWidth);
+		if (InkActorType == EInkActorType::Circle)
 		{
-			Cast<AInkCircle>(InkActor) -> OnMouseChanging({Location.X + Radius, Location.Y, Location.Z,});
+			FVector MouseLocation = Location;
+			MouseLocation.X += Radius;
+			Cast<AInkCircle>(InkActor) -> OnMouseChanging(MouseLocation);
 		}
+		else
+		{InkActor->SetActorScale3D(InkActorTransform.GetScale3D());
+			
+		}
+		
 		ExaminationInkActors.Add(InkActor);
 	}
 	NowInkTaskClass->ReceiveExaminationInkActors(ExaminationInkActors);
