@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("jisheModuleRules")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Development")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5144437c5cb2e7ed32f70892b875b66e065510bc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+03a079f78455a14ab69a5d6dacefe5c9bf9e82e4")]
 [assembly: System.Reflection.AssemblyProductAttribute("jisheModuleRules")]
 [assembly: System.Reflection.AssemblyTitleAttribute("jisheModuleRules")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

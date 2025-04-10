@@ -1549,25 +1549,19 @@
     <ClInclude Include="..\..\Source\jishe\jishe.h">
       <Filter>Source\jishe</Filter>
     </ClInclude>
-    <Filter Include="Source\jishe\Assembling">
-      <UniqueIdentifier>{F0525982-8D5B-35BC-815C-7CD9E324CD1D}</UniqueIdentifier>
-    </Filter>
-    <ClCompile Include="..\..\Source\jishe\Assembling\PartComponents.cpp">
-      <Filter>Source\jishe\Assembling</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\jishe\Assembling\PartComponents.h">
-      <Filter>Source\jishe\Assembling</Filter>
-    </ClInclude>
     <Filter Include="Source\jishe\Private">
       <UniqueIdentifier>{ED7FA6FF-3F2D-31FA-A454-1D949253450D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\jishe\Private\Assembling">
       <UniqueIdentifier>{F6E34E5F-8D2C-3914-BE30-CCEC18126F64}</UniqueIdentifier>
     </Filter>
-    <ClInclude Include="..\..\Source\jishe\Private\Assembling\AssemblingInformation.h">
+    <ClCompile Include="..\..\Source\jishe\Private\Assembling\AssemblingTask.cpp">
       <Filter>Source\jishe\Private\Assembling</Filter>
-    </ClInclude>
+    </ClCompile>
     <ClCompile Include="..\..\Source\jishe\Private\Assembling\MainComponents.cpp">
+      <Filter>Source\jishe\Private\Assembling</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\jishe\Private\Assembling\PartComponents.cpp">
       <Filter>Source\jishe\Private\Assembling</Filter>
     </ClCompile>
     <Filter Include="Source\jishe\Private\InkActors">
@@ -1594,13 +1588,28 @@
     <ClCompile Include="..\..\Source\jishe\Private\InkActors\Wood.cpp">
       <Filter>Source\jishe\Private\InkActors</Filter>
     </ClCompile>
+    <Filter Include="Source\jishe\Private\Machine">
+      <UniqueIdentifier>{2B91D584-0F44-36EF-881C-406B00359AF3}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\jishe\Private\Machine\Machine.cpp">
+      <Filter>Source\jishe\Private\Machine</Filter>
+    </ClCompile>
     <Filter Include="Source\jishe\Public">
       <UniqueIdentifier>{B6394463-3F60-369A-B025-1E80A2F1E292}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\jishe\Public\Assembling">
       <UniqueIdentifier>{04EE6FE8-A835-320C-A6A5-7BB9ABCD491D}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\jishe\Public\Assembling\AssemblingInformation.h">
+      <Filter>Source\jishe\Public\Assembling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\jishe\Public\Assembling\AssemblingTask.h">
+      <Filter>Source\jishe\Public\Assembling</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\jishe\Public\Assembling\MainComponents.h">
+      <Filter>Source\jishe\Public\Assembling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\jishe\Public\Assembling\PartComponents.h">
       <Filter>Source\jishe\Public\Assembling</Filter>
     </ClInclude>
     <Filter Include="Source\jishe\Public\InkActors">
@@ -1629,6 +1638,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\jishe\Public\InkActors\Wood.h">
       <Filter>Source\jishe\Public\InkActors</Filter>
+    </ClInclude>
+    <Filter Include="Source\jishe\Public\Machine">
+      <UniqueIdentifier>{6A6C771D-6093-3E8B-80E0-1FDADAA77BFC}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\jishe\Public\Machine\Machine.h">
+      <Filter>Source\jishe\Public\Machine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
