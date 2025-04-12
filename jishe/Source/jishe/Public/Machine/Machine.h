@@ -9,12 +9,16 @@
 
 class ADropActor;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnLossDegreeChanged,float,Degree);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPureDegreeChanged,float,Degree);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnRunningComplete);
+
+
 UENUM(BlueprintType)
 enum EDropRunningType : uint8
 {
 	Operating,
 	Idle
-	
 };
 
 USTRUCT(BlueprintType)
@@ -46,19 +50,19 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly)
 	TArray<ADropActor*> IdleActors;
-
-	UPROPERTY(BlueprintReadWrite , EditAnywhere)
-	float ReleasedTime = 20.f;
-
-	float RemainingTime = 20.0f; // 剩余时间（秒）
 	
-	int ReleasedBalls = 0;     // 已经释放的小球数量
-
 	UPROPERTY(EditAnywhere , BlueprintReadWrite)
 	int TotalCornNum;
 
 	UPROPERTY(EditAnywhere , BlueprintReadWrite)
 	int TotalBalls = 1000;     // 总共需要释放的小球数量
+
+	UPROPERTY(EditAnywhere , BlueprintReadWrite)
+	float GarbageRate = 0.5f;
+
+	float Rate;
+	
+	int ReleasedBalls = 0; // 已经释放的小球数量
 	
 	int InGarbageCorn = 0;
 
@@ -66,23 +70,14 @@ protected:
 
 	int InCornCorn = 0;
 	
-	//计时器句柄
-	FTimerHandle ReleaseTimerHandle;
-
-	//每帧释放的小球数量
-	int BallsPerSecond = TotalBalls / ReleasedTime; //每帧释放的小球数量， 假设每秒释放50个小球
-	
-	float ReleaseInterval = 1.0f / BallsPerSecond; // 每帧释放的间隔时间
-
-
 	UFUNCTION()
 	void RecycleDropActor(ADropActor* Actor);
 
 	UFUNCTION()
-	void ReleaseDropActor();
+	void ReleaseDropActor(ADropActor* Actor);
 
 	UFUNCTION()
-	void ReleaseBalls();
+	void CountReleasedDropActor();
 
 	UFUNCTION(BlueprintNativeEvent)
 	TSubclassOf<AActor> GetDropActorClass();
@@ -118,13 +113,22 @@ protected:
 	);
 
 	UFUNCTION()
+	void OnFanBeginOverlap(
+		UPrimitiveComponent* OverlappedComponent,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex,
+		bool bFromSweep,
+		const FHitResult& SweepResult
+	);
+
+	UFUNCTION()
 	float CalculatePureDegree();
 
 	UFUNCTION()
 	float CalculateLossDegree();
 
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(EditAnywhere , BlueprintReadOnly)
@@ -136,9 +140,27 @@ public:
 	UPROPERTY(EditAnywhere , BlueprintReadOnly)
 	UBoxComponent* CornOutlet;
 
+	UPROPERTY(EditAnywhere , BlueprintReadOnly)
+	UBoxComponent* Fan;
+
 	UPROPERTY(BlueprintReadOnly)
 	float LossDegree = 0.0f;
 
 	UPROPERTY(BlueprintReadOnly)
 	float PureDegree = 0.0f;
+	
+	UPROPERTY(BlueprintAssignable)
+	FOnLossDegreeChanged OnLossDegreeChanged;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnPureDegreeChanged OnPureDegreeChanged;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnRunningComplete OnComplete;
+
+	UFUNCTION(BlueprintCallable)
+	void ResetThisMachine();
+
+	UFUNCTION(BlueprintCallable)
+	void ReceiveFanForce(float NewRate);
 };

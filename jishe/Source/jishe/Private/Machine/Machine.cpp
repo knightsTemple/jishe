@@ -13,8 +13,8 @@ AMachine::AMachine()
 	FeedPort = CreateDefaultSubobject<UBoxComponent>(TEXT("Feed"));
 	GarbageOutlet = CreateDefaultSubobject<UBoxComponent>(TEXT("GarbageOutlet"));
 	CornOutlet = CreateDefaultSubobject<UBoxComponent>(TEXT("CornOutlet"));
-
-	//FeedPort->OnComponentBeginOverlap.AddDynamic(this , &AMachine::OnFeedPortBeginOverlap);
+	Fan = CreateDefaultSubobject<UBoxComponent>(TEXT("Fan"));
+	FeedPort->OnComponentBeginOverlap.AddDynamic(this , &AMachine::OnFeedPortBeginOverlap);
 	GarbageOutlet->OnComponentBeginOverlap.AddDynamic(this , &AMachine::OnGarbageOutletBeginOverlap);
 	CornOutlet->OnComponentBeginOverlap.AddDynamic(this , &AMachine::OnCornOutletBeginOverlap);
 	
@@ -39,71 +39,43 @@ void AMachine::BeginPlay()
 		ADropActor* DropActor = Cast<ADropActor>(GetWorld() -> SpawnActor(Cls , &SpawnTransform , SpawnParameters));
 		DropPool.Add(DropActor , FDropInfo(DropActor , Idle));
 	}
-
-	BallsPerSecond = TotalBalls / ReleasedTime;
-	ReleaseInterval = 1.0f / BallsPerSecond;
-
-	// 启动计时器，开始释放小球
-	GetWorld()->GetTimerManager().SetTimer(ReleaseTimerHandle, this, &AMachine::ReleaseBalls, ReleaseInterval, true);
-}
-
 	
-
+}
 
 void AMachine::RecycleDropActor(ADropActor* Actor)
 {
 	Actor->InRecycle();
 	DropPool[Actor].DropState = Idle;
 	IdleActors.Add(Actor); // 将空闲对象添加到数组中
+	Actor->SetActorLocation(FeedPort->GetComponentLocation() + FVector{0.f,0.f,1000.f});
+
+	if (IdleActors.Num() == 200 && ReleasedBalls >= TotalBalls)
+	{
+		OnComplete.Broadcast();
+	}
 }
 
-void AMachine::ReleaseDropActor()
+void AMachine::ReleaseDropActor(ADropActor* Actor)
 {
-	if (IdleActors.Num() > 0)
+	IdleActors.Remove(Actor);
+	DropPool[Actor].DropState = Operating;
+	Actor->MovementComponent->GravityScale = Actor->Gravity;
+	Actor->DropState = FMath::RandRange(0.f , 1.f) > GarbageRate ? EDropType::Corn : EDropType::Garbage;
+}
+
+void AMachine::CountReleasedDropActor()
+{
+	ReleasedBalls++;
+	if (ReleasedBalls >= TotalBalls)
 	{
-		ADropActor* DropActor = IdleActors.Pop(); // 从空闲数组中取出一个对象
-		DropPool[DropActor].DropState = Operating;
-		DropActor->SetActorLocation(FeedPort->GetComponentLocation());
-	}
-	else
-	{
-		// 如果没有空闲对象，动态创建新的对象
-		UClass* Cls = GetDropActorClass();
-		if (Cls)
+		for (const auto Actor : IdleActors)
 		{
-			FActorSpawnParameters SpawnParameters;
-			SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-			FTransform SpawnTransform;
-			SpawnTransform.SetLocation(FeedPort->GetComponentLocation());
-			SpawnTransform.SetRotation(FQuat(0, 0, 0, 1));
-			SpawnTransform.SetScale3D(FVector(1, 1, 1));
-			ADropActor* NewDropActor = Cast<ADropActor>(GetWorld()->SpawnActor(Cls, &SpawnTransform, SpawnParameters));
-			DropPool.Add(NewDropActor, FDropInfo(NewDropActor, Operating));
+			Actor->MovementComponent->GravityScale = 0.f;
+			Actor->GarbageMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+			Actor->CornMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		}
+		
 	}
-}
-
-void AMachine::ReleaseBalls()
-{
-	if (ReleasedBalls >= TotalBalls || RemainingTime <= 0.0f)
-	{
-		// 所有小球已经释放完毕或时间结束，停止计时器
-		GetWorld()->GetTimerManager().ClearTimer(ReleaseTimerHandle);
-		UE_LOG(LogTemp, Log, TEXT("All balls released or time ended!"));
-		return;
-	}
-
-	// 每次释放一定数量的小球
-	int32 BallsToRelease = FMath::Min(BallsPerSecond, TotalBalls - ReleasedBalls);
-
-	for (int i = 0; i < BallsToRelease; i++)
-	{
-		ReleaseDropActor();
-		ReleasedBalls++;
-	}
-
-	UE_LOG(LogTemp, Log, TEXT("Released Balls: %d, Remaining Time: %f"), ReleasedBalls, RemainingTime);
-
 }
 
 TSubclassOf<AActor> AMachine::GetDropActorClass_Implementation()
@@ -118,6 +90,9 @@ void AMachine::OnFeedPortBeginOverlap(UPrimitiveComponent* OverlappedComponent, 
 	{
 		return;
 	}
+	ReleaseDropActor(Cast<ADropActor>(OtherActor));
+	CountReleasedDropActor();
+	
 }
 
 void AMachine::OnGarbageOutletBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
@@ -129,6 +104,11 @@ void AMachine::OnGarbageOutletBeginOverlap(UPrimitiveComponent* OverlappedCompon
 	}
 	ADropActor* DropActor = Cast<ADropActor>(OtherActor);
 	RecycleDropActor(DropActor);
+	if (DropActor->DropState == EDropType::Corn)
+	{
+		InGarbageCorn++;	
+	}
+	OnLossDegreeChanged.Broadcast(CalculateLossDegree());
 	
 }
 
@@ -141,6 +121,24 @@ void AMachine::OnCornOutletBeginOverlap(UPrimitiveComponent* OverlappedComponent
 	}
 	ADropActor* DropActor = Cast<ADropActor>(OtherActor);
 	RecycleDropActor(DropActor);
+	InCornBall++;
+	if (DropActor->DropState == EDropType::Corn)
+	{
+		InCornCorn++;
+	}
+	OnPureDegreeChanged.Broadcast(CalculatePureDegree());
+	
+}
+
+void AMachine::OnFanBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (!OtherActor->IsA(ADropActor::StaticClass()))
+	{
+		return;
+	}
+	ADropActor* DropActor = Cast<ADropActor>(OtherActor);
+	DropActor->GiveFanForce(Rate);
 }
 
 float AMachine::CalculatePureDegree()
@@ -166,5 +164,29 @@ void AMachine::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void AMachine::ResetThisMachine()
+{
+	// 重置计数器
+	ReleasedBalls = 0;
+	InGarbageCorn = 0;
+	InCornBall = 0;
+	InCornCorn = 0;
+
+	// 重置小球状态
+	for (auto& Pair : DropPool)
+	{
+		ADropActor* DropActor = Pair.Key;
+		FDropInfo& DropInfo = Pair.Value;
+
+		// 回收小球到进料口
+		RecycleDropActor(DropActor);
+	}
+}
+
+void AMachine::ReceiveFanForce(const float NewRate)
+{
+	Rate = NewRate;
 }
 

@@ -28,18 +28,29 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
-	float Gravity = 0.f;
+	
 
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
+	float Gravity = 0.f;
+
 	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent* Mesh;
+	UStaticMeshComponent* CornMesh;
+
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* GarbageMesh;
 
 	UPROPERTY(EditDefaultsOnly)
 	UCharacterMovementComponent* MovementComponent;
+
+	UPROPERTY(EditDefaultsOnly , BlueprintReadWrite)
+	float GarbageImpulse = 0.f;
+
+	UPROPERTY(EditDefaultsOnly , BlueprintReadWrite)
+	float CornImpulse = 0.f;
 
 	UPROPERTY()
 	EDropType DropState;
@@ -49,4 +60,10 @@ public:
 
 	UFUNCTION()
 	void InArise();
+	
+	UFUNCTION()
+	void ChangeState();
+
+	UFUNCTION()
+	void GiveFanForce(const float Rate);
 };
