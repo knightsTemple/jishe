@@ -8,8 +8,8 @@
 #include "DropActor.generated.h"
 
 
-UENUM()
-enum EDropState
+UENUM(BlueprintType)
+enum class EDropType : uint8
 {
 	Corn,
 	Garbage
@@ -42,7 +42,7 @@ public:
 	UCharacterMovementComponent* MovementComponent;
 
 	UPROPERTY()
-	EDropState DropState;
+	EDropType DropState;
 	
 	UFUNCTION()
 	void InRecycle();

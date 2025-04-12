@@ -9,20 +9,23 @@
 
 class ADropActor;
 
-UENUM()
-enum EDropState
+UENUM(BlueprintType)
+enum EDropRunningType : uint8
 {
 	Operating,
 	Idle
 	
 };
 
+USTRUCT(BlueprintType)
 struct FDropInfo
 {
-	ADropActor* DropActor;
-	EDropState DropState;
+	GENERATED_BODY()
+	
+	TObjectPtr<ADropActor> DropActor;
+	EDropRunningType DropState;
 
-	FDropInfo(ADropActor* DropActor,const EDropState DropState) : DropActor(DropActor), DropState(DropState) {}
+	FDropInfo(ADropActor* DropActor,const EDropRunningType DropState) : DropActor(DropActor), DropState(DropState) {}
 	FDropInfo() : DropActor(nullptr), DropState(Idle) {}
 };
 
