@@ -44,11 +44,42 @@ protected:
 	UPROPERTY(BlueprintReadOnly)
 	TArray<ADropActor*> IdleActors;
 
+	UPROPERTY(BlueprintReadWrite , EditAnywhere)
+	float ReleasedTime = 20.f;
+
+	float RemainingTime = 20.0f; // 剩余时间（秒）
+	
+	int ReleasedBalls = 0;     // 已经释放的小球数量
+
+	UPROPERTY(EditAnywhere , BlueprintReadWrite)
+	int TotalCornNum;
+
+	UPROPERTY(EditAnywhere , BlueprintReadWrite)
+	int TotalBalls = 1000;     // 总共需要释放的小球数量
+	
+	int InGarbageCorn = 0;
+
+	int InCornBall = 0;
+
+	int InCornCorn = 0;
+	
+	//计时器句柄
+	FTimerHandle ReleaseTimerHandle;
+
+	//每帧释放的小球数量
+	int BallsPerSecond = TotalBalls / ReleasedTime; //每帧释放的小球数量， 假设每秒释放50个小球
+	
+	float ReleaseInterval = 1.0f / BallsPerSecond; // 每帧释放的间隔时间
+
+
 	UFUNCTION()
 	void RecycleDropActor(ADropActor* Actor);
 
 	UFUNCTION()
 	void ReleaseDropActor();
+
+	UFUNCTION()
+	void ReleaseBalls();
 
 	UFUNCTION(BlueprintNativeEvent)
 	TSubclassOf<AActor> GetDropActorClass();
@@ -84,10 +115,10 @@ protected:
 	);
 
 	UFUNCTION()
-	void CalculatePureDegree();
+	float CalculatePureDegree();
 
 	UFUNCTION()
-	void CalculateLossDegree();
+	float CalculateLossDegree();
 
 public:	
 	// Called every frame

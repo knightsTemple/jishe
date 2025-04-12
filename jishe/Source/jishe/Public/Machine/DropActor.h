@@ -7,6 +7,14 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "DropActor.generated.h"
 
+
+UENUM()
+enum EDropState
+{
+	Corn,
+	Garbage
+};
+
 UCLASS()
 class JISHE_API ADropActor : public AActor
 {
@@ -33,6 +41,9 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	UCharacterMovementComponent* MovementComponent;
 
+	UPROPERTY()
+	EDropState DropState;
+	
 	UFUNCTION()
 	void InRecycle();
 

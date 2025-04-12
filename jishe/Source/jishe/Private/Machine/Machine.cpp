@@ -27,7 +27,8 @@ void AMachine::BeginPlay()
 
 	UClass* Cls = GetDropActorClass();
 
-	for (int i = 0 ; i < 100 ; i ++)
+	constexpr int InitialBallCount = 200;
+	for (int i = 0 ; i < InitialBallCount ; i ++)
 	{
 		FActorSpawnParameters SpawnParameters;
 		SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
@@ -39,28 +40,70 @@ void AMachine::BeginPlay()
 		DropPool.Add(DropActor , FDropInfo(DropActor , Idle));
 	}
 
-	
+	BallsPerSecond = TotalBalls / ReleasedTime;
+	ReleaseInterval = 1.0f / BallsPerSecond;
+
+	// 启动计时器，开始释放小球
+	GetWorld()->GetTimerManager().SetTimer(ReleaseTimerHandle, this, &AMachine::ReleaseBalls, ReleaseInterval, true);
 }
+
+	
+
 
 void AMachine::RecycleDropActor(ADropActor* Actor)
 {
 	Actor->InRecycle();
 	DropPool[Actor].DropState = Idle;
-	IdleActors.Add(Actor);
+	IdleActors.Add(Actor); // 将空闲对象添加到数组中
 }
 
 void AMachine::ReleaseDropActor()
 {
-	for (const auto Pair : DropPool)
+	if (IdleActors.Num() > 0)
 	{
-		if (Pair.Value.DropState == Idle)
-		{
-			Pair.Key->SetActorLocation(FeedPort->GetComponentLocation());
-			
-			break;
-		}
-		 
+		ADropActor* DropActor = IdleActors.Pop(); // 从空闲数组中取出一个对象
+		DropPool[DropActor].DropState = Operating;
+		DropActor->SetActorLocation(FeedPort->GetComponentLocation());
 	}
+	else
+	{
+		// 如果没有空闲对象，动态创建新的对象
+		UClass* Cls = GetDropActorClass();
+		if (Cls)
+		{
+			FActorSpawnParameters SpawnParameters;
+			SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+			FTransform SpawnTransform;
+			SpawnTransform.SetLocation(FeedPort->GetComponentLocation());
+			SpawnTransform.SetRotation(FQuat(0, 0, 0, 1));
+			SpawnTransform.SetScale3D(FVector(1, 1, 1));
+			ADropActor* NewDropActor = Cast<ADropActor>(GetWorld()->SpawnActor(Cls, &SpawnTransform, SpawnParameters));
+			DropPool.Add(NewDropActor, FDropInfo(NewDropActor, Operating));
+		}
+	}
+}
+
+void AMachine::ReleaseBalls()
+{
+	if (ReleasedBalls >= TotalBalls || RemainingTime <= 0.0f)
+	{
+		// 所有小球已经释放完毕或时间结束，停止计时器
+		GetWorld()->GetTimerManager().ClearTimer(ReleaseTimerHandle);
+		UE_LOG(LogTemp, Log, TEXT("All balls released or time ended!"));
+		return;
+	}
+
+	// 每次释放一定数量的小球
+	int32 BallsToRelease = FMath::Min(BallsPerSecond, TotalBalls - ReleasedBalls);
+
+	for (int i = 0; i < BallsToRelease; i++)
+	{
+		ReleaseDropActor();
+		ReleasedBalls++;
+	}
+
+	UE_LOG(LogTemp, Log, TEXT("Released Balls: %d, Remaining Time: %f"), ReleasedBalls, RemainingTime);
+
 }
 
 TSubclassOf<AActor> AMachine::GetDropActorClass_Implementation()
@@ -84,7 +127,8 @@ void AMachine::OnGarbageOutletBeginOverlap(UPrimitiveComponent* OverlappedCompon
 	{
 		return;
 	}
-
+	ADropActor* DropActor = Cast<ADropActor>(OtherActor);
+	RecycleDropActor(DropActor);
 	
 }
 
@@ -95,16 +139,26 @@ void AMachine::OnCornOutletBeginOverlap(UPrimitiveComponent* OverlappedComponent
 	{
 		return;
 	}
+	ADropActor* DropActor = Cast<ADropActor>(OtherActor);
+	RecycleDropActor(DropActor);
 }
 
-void AMachine::CalculatePureDegree()
+float AMachine::CalculatePureDegree()
 {
-	
+	if (InCornBall == 0)
+	{
+		return 0.0f;
+	}
+	return static_cast<float>(InCornCorn) / static_cast<float>(InCornBall);
 }
 
-void AMachine::CalculateLossDegree()
+float AMachine::CalculateLossDegree()
 {
-	
+	if (TotalCornNum == 0)
+	{
+		return  0.0f;
+	}
+	return static_cast<float>(InGarbageCorn) / static_cast<float>(TotalCornNum);
 }
 
 // Called every frame
