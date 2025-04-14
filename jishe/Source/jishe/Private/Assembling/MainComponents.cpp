@@ -14,21 +14,26 @@ AMainComponents::AMainComponents()
 	CollisionBoxes = CreateDefaultSubobject<USceneComponent>("CollisionBoxes");
 	MainStaticMeshes = CreateDefaultSubobject<USceneComponent>("MainStaticMeshes");
 	PartStaticMeshes = CreateDefaultSubobject<USceneComponent>("PartStaticMeshes");
+	Root = CreateDefaultSubobject<USceneComponent>("Root");
+	SetRootComponent(Root);
+	CollisionBoxes->SetupAttachment(Root);
+	MainStaticMeshes->SetupAttachment(Root);
+	PartStaticMeshes->SetupAttachment(Root);
 	PrimaryActorTick.bCanEverTick = false;
+	
+}
+
+// Called when the game starts or when spawned
+void AMainComponents::BeginPlay()
+{
+	Super::BeginPlay();
+
 	MakeBoxesArray();
 	MakeEnumMap();
 	MakeSuccessMap();
 	MakeMeshMap();
-
-	TArray<USceneComponent*> ComponentChildren;
-	PartStaticMeshes->GetChildrenComponents(false, ComponentChildren);	
-	for (USceneComponent* Mesh : ComponentChildren)
-	{
-		ChangeComponentLook(Mesh , None);
-	}
-	AssemblingDataTable = Cast<UDataTable>(FSoftObjectPath(TEXT("/Game/AssemblingActors/DT_Assembling.DT_Assembling")).TryLoad());
-
 	TArray<FAssemblingComponentInfo*> ComponentInfoes;
+	AssemblingDataTable = Cast<UDataTable>(FSoftObjectPath(TEXT("/Game/AssemblingActors/DT_Assembling.DT_Assembling")).TryLoad());
 	AssemblingDataTable -> GetAllRows(TEXT("GetAllRows") , ComponentInfoes);
 	for (const auto Pair : EnumMap)
 	{
@@ -42,12 +47,16 @@ AMainComponents::AMainComponents()
 		}
 	}
 	NowTaskClass = Cast<AAssemblingTask>(UGameplayStatics :: GetActorOfClass(GetWorld() , AAssemblingTask::StaticClass()));
-}
 
-// Called when the game starts or when spawned
-void AMainComponents::BeginPlay()
-{
-	Super::BeginPlay();
+	TArray<USceneComponent*> ComponentChildren;
+	PartStaticMeshes->GetChildrenComponents(true, ComponentChildren);	
+	for (USceneComponent* Mesh : ComponentChildren)
+	{
+		ChangeComponentLook(Mesh , None);
+	}
+	
+
+	
 	
 }
 
@@ -62,9 +71,9 @@ void AMainComponents::ReturnOriginLook_Implementation(USceneComponent* MeshCompo
 
 void AMainComponents::MakeSuccessMap()
 {
-	for (const USceneComponent* Box : Boxes)
+	for ( USceneComponent* Box : Boxes)
 	{
-		SuccessMap[Box] = false;
+		SuccessMap.Add(Box,false);
 	}
 }
 
@@ -124,6 +133,25 @@ void AMainComponents::OnMouseRelease(const FHitResult& HitResult,const EAssembli
 	}
 }
 
+void AMainComponents::OnMouseRelease()
+{
+	USceneComponent* Component = nullptr;
+	for (const auto Pair : SuccessMap)
+	{
+		if (!Pair.Value)
+		{
+			Component = Pair.Key;
+		}
+		
+	}
+	if (Component == nullptr)
+	{
+		return;
+	}
+	CompletedOnePart(Component);
+	
+}
+
 void AMainComponents::OnMouseHover(const FHitResult& HitResult, const EAssemblingComponentsType EnumType)
 {
 	UBoxComponent* Component = Cast<UBoxComponent>(HitResult.Component.Get());
@@ -160,14 +188,23 @@ void AMainComponents::ChangeComponentLook(USceneComponent* Component, EComponent
 {
 	if (LookMethod == None)
 	{
-		MeshMap[Component]->SetVisibility(false);
+		Component->SetVisibility(false);
 		return;
 	}
-	else if (LookMethod == Origin)
+	if (LookMethod == Origin)
 	{
-		ReturnOriginLook(Component);
+		TArray<USceneComponent*> ComponentsChildren;
+		Component->GetChildrenComponents(true,ComponentsChildren);
+		ComponentsChildren.Add(Component);
+		for (USceneComponent* Child : ComponentsChildren)
+		{
+			Child->SetVisibility(true);
+			ReturnOriginLook(Child);
+		}
+		
 		return;
 	}
+	Component->SetVisibility(true);
 	UMaterialInstance* MaterialInstance = LoadObject<UMaterialInstance>(nullptr , LookMethod == Red ? TEXT("/Game/AssemblingActors/M_Red_Inst.M_Red_inst") :
 		TEXT("/Game/AssemblingActors/M_Green_Inst.M_Green_inst"));
 	MeshMap[Component]->SetMaterial(0,MaterialInstance);
@@ -177,7 +214,7 @@ void AMainComponents::CompletedOnePart(USceneComponent* Component)
 {
 	if (Component == nullptr) return;
 	SuccessMap[Component] = true;
-	ChangeComponentLook(Component,Origin);
+	ChangeComponentLook(MeshMap[Component],Origin);
 	if(CheckIsCompleted())
 	{
 		OnComplete.Broadcast();

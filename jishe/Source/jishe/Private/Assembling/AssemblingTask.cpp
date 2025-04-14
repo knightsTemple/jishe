@@ -18,6 +18,9 @@ AAssemblingTask::AAssemblingTask()
 void AAssemblingTask::BeginPlay()
 {
 	Super::BeginPlay();
+
+	NowMainComponents = Cast<AMainComponents>(GetWorld() -> SpawnActor(NowTasks[NowTask].ComponentClass , &SpawnLocation));
+	OnChanged.Broadcast();
 }
 
 
@@ -29,7 +32,11 @@ void AAssemblingTask::AllDone()
 void AAssemblingTask::OneTaskDone()
 {
 	NowTask++;
-	if(NowTask == NowTasks.Num())
+	if (NowTasks.Num() == 0)
+	{
+		return;
+	}
+	if(NowTask >= NowTasks.Num())
 	{
 		AllDone();
 		return;

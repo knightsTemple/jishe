@@ -22,7 +22,7 @@ protected:
 	UPROPERTY()
 	int NowTask = 0;
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly)
 	AMainComponents* NowMainComponents;
 
 	UPROPERTY()
@@ -32,7 +32,7 @@ protected:
 	UDataTable* NowDataTable;
 
 	UPROPERTY(BlueprintReadWrite , EditAnywhere)
-	FVector SpawnLocation;
+	FVector SpawnLocation = {0,0,0};
 
 	UPROPERTY(BlueprintAssignable)
 	FOnChanged OnChanged;

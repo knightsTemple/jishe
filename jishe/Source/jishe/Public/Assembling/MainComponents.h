@@ -28,6 +28,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY()
+	USceneComponent* Root;
+ 
 	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly,Category="Components")
 	USceneComponent* CollisionBoxes;//下放处理好的碰撞体（对线型检测敏感
 
@@ -92,9 +95,11 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	void OnHammer(USceneComponent* Component);
+	
+	void OnMouseRelease(const FHitResult& HitResult ,const EAssemblingComponentsType EnumType);
 
 	UFUNCTION(BlueprintCallable)
-	void OnMouseRelease(const FHitResult& HitResult ,const EAssemblingComponentsType EnumType);
+	void OnMouseRelease();
 
 	UFUNCTION(BlueprintCallable)
 	void OnMouseHover(const FHitResult& HitResult ,const EAssemblingComponentsType EnumType);

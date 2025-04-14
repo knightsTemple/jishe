@@ -110,7 +110,7 @@ void AInkActorFactory::DeleteLastActor()
 {
 	if (AllInkActors.Num() == 0)
 	{
-		GEngine->AddOnScreenDebugMessage(-1,2,FColor::Red,"There is nothing to delete");
+		//GEngine->AddOnScreenDebugMessage(-1,2,FColor::Red,"There is nothing to delete");
 		return;
 	}
 	if (NowOperatingInkActor)
@@ -134,7 +134,7 @@ void AInkActorFactory::OnMouseChanging(const FVector& NewLocation)
 }
 
 void AInkActorFactory::OnMouseLeftClick(EInkActorType InkActorType , const FVector& Location) 
-{	GEngine->AddOnScreenDebugMessage(-1,2,FColor::Yellow,FString::Printf(TEXT("X: %f , Y : %f , Z : %f"), Location.X, Location.Y, Location.Z));
+{	//GEngine->AddOnScreenDebugMessage(-1,2,FColor::Yellow,FString::Printf(TEXT("X: %f , Y : %f , Z : %f"), Location.X, Location.Y, Location.Z));
 	if (NowOperatingInkActor)
 	{
 		NowOperatingInkActor -> EstablishThisActor();
