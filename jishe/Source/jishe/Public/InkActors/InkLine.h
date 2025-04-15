@@ -21,4 +21,7 @@ protected:
 
 public:
 	virtual void OnMouseChanging(const FVector& NewLocation) override;
+
+	UFUNCTION(BlueprintNativeEvent)
+	void ChangeMaterialToExamination(UMaterialInstance* Instance);
 };

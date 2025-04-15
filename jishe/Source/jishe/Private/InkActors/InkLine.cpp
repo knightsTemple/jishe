@@ -35,4 +35,8 @@ void AInkLine::OnMouseChanging(const FVector& NewLocation)
 	SetActorRotation(NewRotation);
 }
 
+void AInkLine::ChangeMaterialToExamination_Implementation(UMaterialInstance* Instance)
+{
+}
+
 

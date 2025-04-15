@@ -49,6 +49,9 @@ protected:
 	UPROPERTY(BlueprintReadWrite,EditAnywhere)
 	FVector WoodSpawnLocation = {0,0,0};
 
+	UPROPERTY(BlueprintReadWrite,Category="Components")
+	UMaterialInstance* MainMaterialInstance;
+
 	UPROPERTY()
 	TArray<AInkActor*> InkActorsData;//实际上生成的Ink Actor
 	

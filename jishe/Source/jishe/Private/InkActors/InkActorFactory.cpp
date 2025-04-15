@@ -74,9 +74,15 @@ void AInkActorFactory::	GenerateExaminationInkActors()
 			FVector MouseLocation = Location;
 			MouseLocation.X += Radius;
 			Cast<AInkCircle>(InkActor) -> OnMouseChanging(MouseLocation);
+			if (MainMaterialInstance != nullptr)
+			{
+				Cast<AInkCircle>(InkActor)->RingMaterial = MainMaterialInstance;
+			}
+			
 		}
 		else
-		{InkActor->SetActorScale3D(InkActorTransform.GetScale3D());
+		{
+			InkActor->SetActorScale3D(InkActorTransform.GetScale3D());
 			
 		}
 		
