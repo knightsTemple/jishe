@@ -49,7 +49,7 @@ protected:
 	UPROPERTY(BlueprintReadWrite,EditAnywhere)
 	FVector WoodSpawnLocation = {0,0,0};
 
-	UPROPERTY(BlueprintReadWrite,Category="Components")
+	UPROPERTY(BlueprintReadWrite,Category="Components",EditAnywhere)
 	UMaterialInstance* MainMaterialInstance;
 
 	UPROPERTY()
