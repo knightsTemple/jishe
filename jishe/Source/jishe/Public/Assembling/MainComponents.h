@@ -11,6 +11,7 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCanBeHammer, USceneComponent* , Component);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHammerOver,USceneComponent*,Component);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnComplete);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnOnePartComplete);
 
 
 UCLASS()
@@ -71,6 +72,9 @@ protected:
 
 	UPROPERTY(BlueprintAssignable)
 	FOnComplete		OnComplete;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnOnePartComplete	OnOnePartComplete;
 
 	UPROPERTY()
 	AAssemblingTask* NowTaskClass;

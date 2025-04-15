@@ -215,6 +215,7 @@ void AMainComponents::CompletedOnePart(USceneComponent* Component)
 	if (Component == nullptr) return;
 	SuccessMap[Component] = true;
 	ChangeComponentLook(MeshMap[Component],Origin);
+	OnOnePartComplete.Broadcast();
 	if(CheckIsCompleted())
 	{
 		OnComplete.Broadcast();

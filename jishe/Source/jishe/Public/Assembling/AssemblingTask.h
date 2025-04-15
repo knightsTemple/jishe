@@ -25,7 +25,7 @@ protected:
 	UPROPERTY(BlueprintReadOnly)
 	AMainComponents* NowMainComponents;
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly)
 	TArray<FAssemblingTasks> NowTasks;
 
 	UPROPERTY()
