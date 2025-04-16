@@ -6,6 +6,7 @@
 #include "Customizations/MathStructProxyCustomizations.h"
 #include "InkActors/InkActor.h"
 #include "InkActors/InkCircle.h"
+#include "InkActors/InkLine.h"
 #include "InkActors/InkTask.h"
 #include "InkActors/Wood.h"
 #include "Kismet/GameplayStatics.h"
@@ -63,7 +64,7 @@ void AInkActorFactory::	GenerateExaminationInkActors()
 		case EInkActorType::Circle: InkActorClass = InkCircleClass; break;
 		}
 		FVector Location = InkActorTransform.GetLocation() + NowWood->GetActorLocation();
-		Location.Z += NowWood -> Box->GetScaledBoxExtent().Z * 2;
+		Location.Z += NowWood -> Box->GetScaledBoxExtent().Z * 2 - 5;
 		const FRotator Rotator(InkActorTransform.GetRotation());
 		FActorSpawnParameters SpawnParameters;
 		SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
@@ -73,17 +74,17 @@ void AInkActorFactory::	GenerateExaminationInkActors()
 		{
 			FVector MouseLocation = Location;
 			MouseLocation.X += Radius;
-			Cast<AInkCircle>(InkActor) -> OnMouseChanging(MouseLocation);
+			
 			if (MainMaterialInstance != nullptr)
 			{
 				Cast<AInkCircle>(InkActor)->RingMaterial = MainMaterialInstance;
 			}
-			
+			Cast<AInkCircle>(InkActor) -> OnMouseChanging(MouseLocation);
 		}
 		else
 		{
 			InkActor->SetActorScale3D(InkActorTransform.GetScale3D());
-			
+			Cast<AInkLine>(InkActor) -> ChangeMaterialToExamination(MainMaterialInstance);
 		}
 		
 		ExaminationInkActors.Add(InkActor);

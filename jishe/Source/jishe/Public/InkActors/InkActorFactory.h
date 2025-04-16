@@ -55,7 +55,7 @@ protected:
 	UPROPERTY()
 	TArray<AInkActor*> InkActorsData;//实际上生成的Ink Actor
 	
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly)
 	AWood* NowWood = nullptr;
 
 	UPROPERTY()

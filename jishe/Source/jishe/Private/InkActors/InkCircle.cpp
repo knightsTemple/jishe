@@ -14,7 +14,7 @@ AInkCircle::AInkCircle()
 void AInkCircle::BeginPlay()
 {
     Super::BeginPlay();
-    ProcMesh->SetMaterial(0, RingMaterial);
+    
     
 }
 
@@ -70,4 +70,5 @@ void AInkCircle::GenerateRingMesh()
     }
 
     ProcMesh->CreateMeshSection(0, Vertices, Triangles, {}, UVs, {}, {}, false);
+    ProcMesh->SetMaterial(0, RingMaterial);
 }
