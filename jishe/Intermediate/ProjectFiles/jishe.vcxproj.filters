@@ -1591,7 +1591,13 @@
     <Filter Include="Source\jishe\Private\Machine">
       <UniqueIdentifier>{2B91D584-0F44-36EF-881C-406B00359AF3}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\jishe\Private\Machine\DropActor.cpp">
+      <Filter>Source\jishe\Private\Machine</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\jishe\Private\Machine\Machine.cpp">
+      <Filter>Source\jishe\Private\Machine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\jishe\Private\Machine\MachineTask.cpp">
       <Filter>Source\jishe\Private\Machine</Filter>
     </ClCompile>
     <Filter Include="Source\jishe\Public">
@@ -1642,7 +1648,13 @@
     <Filter Include="Source\jishe\Public\Machine">
       <UniqueIdentifier>{6A6C771D-6093-3E8B-80E0-1FDADAA77BFC}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\jishe\Public\Machine\DropActor.h">
+      <Filter>Source\jishe\Public\Machine</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\jishe\Public\Machine\Machine.h">
+      <Filter>Source\jishe\Public\Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\jishe\Public\Machine\MachineTask.h">
       <Filter>Source\jishe\Public\Machine</Filter>
     </ClInclude>
   </ItemGroup>
