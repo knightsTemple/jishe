@@ -199,6 +199,7 @@ void AMainComponents::ChangeComponentLook(USceneComponent* Component, EComponent
 		for (USceneComponent* Child : ComponentsChildren)
 		{
 			Child->SetVisibility(true);
+			
 			ReturnOriginLook(Child);
 		}
 		
